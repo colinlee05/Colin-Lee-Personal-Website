@@ -13,27 +13,42 @@ html {
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    background-color: #ffffff; /* Clean white like Apple */
+    background-color: #ffffff;
     color: #1a1a1a;
     width: 100%;
 }
 
 /* Header */
 header {
-    background-color: #000; /* Black header like Apple */
+    background-color: #000;
     color: #fff;
     padding: 20px;
-    text-align: center;
     width: 100%;
     position: fixed;
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-img {
+    width: 50px;
+    height: auto;
 }
 
 header h1 {
-    font-size: 2.2em;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5em;
     font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* 3D effect */
 }
 
 nav ul {
@@ -42,7 +57,6 @@ nav ul {
     justify-content: center;
     gap: 25px;
     flex-wrap: wrap;
-    margin-top: 10px;
 }
 
 nav a {
@@ -61,7 +75,7 @@ nav a:hover {
 /* Main Content */
 main {
     width: 100%;
-    padding-top: 100px; /* Space for fixed header */
+    padding-top: 100px;
 }
 
 /* Sections */
@@ -72,7 +86,7 @@ section {
 }
 
 .hero {
-    background-color: #f5f5f5; /* Light gray hero section */
+    background-color: #f5f5f5;
     padding: 80px 20px;
 }
 
@@ -102,15 +116,8 @@ p {
     color: #333;
 }
 
-.profile-img {
-    width: 200px;
-    height: auto;
-    margin-bottom: 30px;
-    border-radius: 10px;
-}
-
 button {
-    background-color: #0071e3; /* Apple-like blue */
+    background-color: #0071e3;
     color: #fff;
     border: none;
     padding: 12px 25px;
@@ -177,28 +184,16 @@ button:hover {
 
 /* Lists */
 .content ul {
-    list-style-type: disc;
-    margin-left: 20px;
-    font-size: 1.2em;
-    text-align: left;
-    max-width: 800px;
+    list-style-type: none; /* No bullets */
     margin: 0 auto;
-}
-
-.skills-list {
-    list-style: none;
-    margin-left: 0;
+    font-size: 1.2em;
     text-align: center;
+    max-width: 800px;
 }
 
 .skills-list li {
     margin-bottom: 15px;
     font-size: 1.2em;
-}
-
-.skills-list li::before {
-    content: "• ";
-    color: #0071e3;
 }
 
 .social-links {
