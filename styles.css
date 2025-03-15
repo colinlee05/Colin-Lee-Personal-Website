@@ -1,0 +1,181 @@
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f0f0f0;
+    color: #333;
+    width: 100%; /* Full screen width */
+}
+
+/* Header */
+header {
+    background-color: #461d7c;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Wraps nav items on smaller screens */
+}
+
+nav a {
+    color: #fdb927;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: white;
+}
+
+/* Main Content */
+main {
+    width: 100%; /* Full width */
+    padding: 20px; /* Consistent padding */
+}
+
+/* Sections */
+section {
+    background-color: white;
+    padding: 20px;
+    margin: 0 0 20px 0; /* No side margins, only bottom */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Full width */
+}
+
+h2 {
+    color: #461d7c;
+    margin-bottom: 15px;
+}
+
+.content {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    max-width: 1200px; /* Optional cap for readability */
+    margin: 0 auto; /* Centers content within full-width section */
+}
+
+.contact-content {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.contact-list {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.contact-list li {
+    margin-bottom: 8px;
+}
+
+.contact-list strong {
+    color: #461d7c;
+}
+
+.profile-img {
+    width: 150px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.social-links, .skills-list {
+    list-style: none;
+}
+
+.social-links li, .skills-list li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.social-icon {
+    width: 30px;
+    height: auto;
+}
+
+button {
+    background-color: #fdb927;
+    color: #461d7c;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #e6a700;
+}
+
+.hidden {
+    display: none;
+}
+
+#fun-fact, #password-result {
+    margin-top: 10px;
+    font-style: italic;
+    color: #666;
+}
+
+#password-input {
+    padding: 8px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+}
+
+/* Projects and Skills Specific Styles */
+.content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.skills-list {
+    list-style-type: none;
+    margin-left: 0;
+}
+
+.skills-list li::before {
+    content: "✓ ";
+    color: #fdb927;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #461d7c;
+    color: white;
+    width: 100%;
+}
