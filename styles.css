@@ -56,6 +56,11 @@ header {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    transition: transform 0.3s ease; /* Smooth slide effect */
+}
+
+header.hidden {
+    transform: translateY(-100%); /* Slides up out of view */
 }
 
 .header-content {
@@ -73,7 +78,7 @@ header {
 
 header h1 {
     font-family: 'Poppins', sans-serif;
-    font-size: 2em; /* Reduced for smaller screens */
+    font-size: 2em;
     font-weight: 700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     white-space: nowrap;
@@ -130,7 +135,7 @@ nav a:hover {
 /* Main Content */
 main {
     width: 100%;
-    padding-top: 80px; /* Adjusted for responsive header */
+    padding-top: 80px; /* Matches header height */
 }
 
 /* Sections */

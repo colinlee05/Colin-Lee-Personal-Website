@@ -58,4 +58,23 @@ document.addEventListener('DOMContentLoaded', function() {
             toggleButton.textContent = 'Toggle Light Mode';
         }
     });
+
+    // Scroll behavior for header
+    let lastScrollTop = 0;
+    const header = document.querySelector('header');
+    const headerHeight = header.offsetHeight;
+
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop && scrollTop > headerHeight) {
+            // Scrolling down and past header height
+            header.classList.add('hidden');
+        } else {
+            // Scrolling up or at top
+            header.classList.remove('hidden');
+        }
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative scroll
+    });
 });
