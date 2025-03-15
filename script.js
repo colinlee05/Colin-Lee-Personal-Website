@@ -45,4 +45,17 @@ document.addEventListener('DOMContentLoaded', function() {
             this.textContent = 'Show Code';
         }
     });
+
+    // Dark mode toggle
+    const toggleButton = document.getElementById('dark-mode-toggle');
+    toggleButton.addEventListener('click', function() {
+        const currentTheme = document.body.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            document.body.removeAttribute('data-theme');
+            toggleButton.textContent = 'Toggle Dark Mode';
+        } else {
+            document.body.setAttribute('data-theme', 'dark');
+            toggleButton.textContent = 'Toggle Light Mode';
+        }
+    });
 });

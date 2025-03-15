@@ -1,3 +1,26 @@
+/* CSS Variables for Light/Dark Mode */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #1a1a1a;
+    --section-bg: #ffffff;
+    --hero-bg: #f5f5f5;
+    --footer-bg: #f5f5f5;
+    --footer-text: #666;
+    --link-hover: #0071e3;
+    --code-bg: #f5f5f5;
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+    --section-bg: #2a2a2a;
+    --hero-bg: #333333;
+    --footer-bg: #222222;
+    --footer-text: #cccccc;
+    --link-hover: #66b3ff;
+    --code-bg: #333333;
+}
+
 /* Smooth scrolling */
 html {
     scroll-behavior: smooth;
@@ -13,9 +36,10 @@ html {
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    background-color: #ffffff;
-    color: #1a1a1a;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     width: 100%;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Header */
@@ -40,8 +64,8 @@ header {
 }
 
 .header-img {
-    width: 60px; /* Increased from 40px */
-    height: 60px; /* Matching height */
+    width: 60px;
+    height: 60px;
     object-fit: contain;
 }
 
@@ -50,6 +74,12 @@ header h1 {
     font-size: 2.5em;
     font-weight: 700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 nav ul {
@@ -66,11 +96,29 @@ nav a {
     font-weight: 400;
     font-size: 1.1em;
     padding: 8px 15px;
-    transition: opacity 0.3s ease;
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 nav a:hover {
     opacity: 0.7;
+    transform: scale(1.05);
+}
+
+#dark-mode-toggle {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+#dark-mode-toggle:hover {
+    background-color: #e0e0e0;
+    transform: scale(1.05);
 }
 
 /* Main Content */
@@ -84,10 +132,12 @@ section {
     width: 100%;
     padding: 60px 20px;
     text-align: center;
+    background-color: var(--section-bg);
+    transition: background-color 0.3s ease;
 }
 
 .hero {
-    background-color: #f5f5f5;
+    background-color: var(--hero-bg);
     padding: 80px 20px;
 }
 
@@ -101,7 +151,7 @@ h2 {
     font-size: 2.5em;
     font-weight: 700;
     margin-bottom: 30px;
-    color: #1a1a1a;
+    color: var(--text-color);
 }
 
 h3 {
@@ -114,7 +164,15 @@ p {
     font-size: 1.2em;
     max-width: 800px;
     margin: 0 auto 20px;
-    color: #333;
+    color: var(--text-color);
+}
+
+.profile-img {
+    width: 200px;
+    height: auto;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 button {
@@ -126,12 +184,13 @@ button {
     border-radius: 25px;
     font-weight: 600;
     font-size: 1em;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
     margin: 10px 0;
 }
 
 button:hover {
     background-color: #005bb5;
+    transform: scale(1.05);
 }
 
 .hidden {
@@ -140,7 +199,7 @@ button:hover {
 
 #fun-fact {
     font-size: 1.1em;
-    color: #666;
+    color: var(--footer-text);
     margin-top: 15px;
 }
 
@@ -167,23 +226,25 @@ button:hover {
     border-radius: 8px;
     width: 250px;
     font-size: 1em;
+    background-color: var(--section-bg);
+    color: var(--text-color);
 }
 
 #code-display {
-    background-color: #f5f5f5;
+    background-color: var(--code-bg);
     padding: 20px;
     border-radius: 8px;
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.9em;
-    color: #333;
+    color: var(--text-color);
     margin-top: 20px;
     text-align: left;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    overflow-x: auto; /* Scrollable if code overflows */
-    white-space: pre-wrap; /* Wraps long lines */
-    word-wrap: break-word; /* Breaks long words */
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 /* Lists */
@@ -217,17 +278,23 @@ button:hover {
 .social-icon {
     width: 40px;
     height: auto;
+    transition: transform 0.2s ease;
 }
 
 .social-links a {
-    color: #1a1a1a;
+    color: var(--text-color);
     text-decoration: none;
     font-weight: 600;
     font-size: 1.2em;
+    transition: color 0.3s ease;
+}
+
+.social-links li:hover .social-icon {
+    transform: scale(1.1);
 }
 
 .social-links a:hover {
-    color: #0071e3;
+    color: var(--link-hover);
 }
 
 .contact-list {
@@ -241,7 +308,7 @@ button:hover {
 }
 
 .contact-list strong {
-    color: #1a1a1a;
+    color: var(--text-color);
     font-weight: 600;
 }
 
@@ -258,8 +325,9 @@ button:hover {
 footer {
     text-align: center;
     padding: 40px;
-    background-color: #f5f5f5;
-    color: #666;
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
     width: 100%;
     font-size: 1em;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
