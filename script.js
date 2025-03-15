@@ -10,23 +10,36 @@ document.getElementById('fun-fact-btn').addEventListener('click', function() {
     }
 });
 
-// Password strength checker
+// Password strength checker with bar
 document.getElementById('check-btn').addEventListener('click', function() {
     var password = document.getElementById('password-input').value;
-    var result = document.getElementById('password-result');
-    var strength = '';
+    var bar = document.getElementById('strength-bar');
+    var strength = 0;
 
     if (password.length === 0) {
-        strength = 'Please enter a password.';
+        strength = 0;
     } else if (password.length < 6) {
-        strength = 'Weak: Too short (less than 6 characters).';
+        strength = 25;
     } else if (password.length < 10 && !/[!@#$%^&*]/.test(password)) {
-        strength = 'Medium: At least 6 characters, but no special symbols.';
+        strength = 50;
     } else if (password.length >= 10 && /[!@#$%^&*]/.test(password)) {
-        strength = 'Strong: 10+ characters with special symbols!';
+        strength = 100;
     } else {
-        strength = 'Good: Decent length, consider adding special characters.';
+        strength = 75;
     }
 
-    result.textContent = strength;
+    bar.style.width = strength + '%';
+    bar.style.backgroundColor = strength <= 25 ? '#ff4d4d' : strength <= 50 ? '#ffcc00' : strength <= 75 ? '#66cc00' : '#00cc00';
+});
+
+// Show code button
+document.getElementById('code-btn').addEventListener('click', function() {
+    var codeDisplay = document.getElementById('code-display');
+    if (codeDisplay.classList.contains('hidden')) {
+        codeDisplay.classList.remove('hidden');
+        this.textContent = 'Hide Code';
+    } else {
+        codeDisplay.classList.add('hidden');
+        this.textContent = 'Show Code';
+    }
 });

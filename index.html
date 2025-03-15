@@ -28,41 +28,59 @@
     <!-- Main Content -->
     <main>
         <!-- About Me Section -->
-        <section id="about">
-            <h2>About Me</h2>
+        <section id="about" class="hero">
             <div class="content">
-                <div class="about-container">
-                    <img src="lsu-logo.png" alt="LSU Logo" class="profile-img">
-                    <div class="about-text">
-                        <p>
-                            I'm Colin Lee, a student at Louisiana State University (LSU) majoring in Information Systems and Decision Sciences (ISDS) with a concentration in Cyber Risk. I’m also pursuing a minor in Computer Science. I’m passionate about technology, cybersecurity, and using data to solve real-world problems. Geaux Tigers!
-                        </p>
-                        <button id="fun-fact-btn">Show Fun Fact</button>
-                        <p id="fun-fact" class="hidden">I once stayed up all night debugging code during an LSU game week!</p>
-                    </div>
-                </div>
+                <img src="lsu-logo.png" alt="LSU Logo" class="profile-img">
+                <h2>About Me</h2>
+                <p>
+                    I'm Colin Lee, a Louisiana State University student majoring in Information Systems and Decision Sciences (ISDS) with a focus on Cyber Risk, and minoring in Computer Science. I’m driven by a passion for technology, cybersecurity, and problem-solving. Geaux Tigers!
+                </p>
+                <button id="fun-fact-btn">Fun Fact</button>
+                <p id="fun-fact" class="hidden">I once debugged code all night during an LSU game week!</p>
             </div>
         </section>
 
         <!-- Projects Section -->
         <section id="projects">
-            <h2>Projects</h2>
             <div class="content">
-                <ul>
-                    <li>
-                        <strong>Password Strength Analyzer</strong>: Developed a Java program to evaluate password security, now built into this site! Try it below:<br>
-                        <input type="text" id="password-input" placeholder="Enter a password">
-                        <button id="check-btn">Check Strength</button>
-                        <p id="password-result"></p>
-                    </li>
-                </ul>
+                <h2>Projects</h2>
+                <div class="project-item">
+                    <h3>Password Strength Analyzer</h3>
+                    <p>Built a Java tool to assess password security, now live here. Test it out!</p>
+                    <input type="text" id="password-input" placeholder="Enter a password">
+                    <button id="check-btn">Check Strength</button>
+                    <div id="strength-bar-container">
+                        <div id="strength-bar"></div>
+                    </div>
+                    <button id="code-btn">Show Code</button>
+                    <pre id="code-display" class="hidden">document.getElementById('check-btn').addEventListener('click', function() {
+    var password = document.getElementById('password-input').value;
+    var bar = document.getElementById('strength-bar');
+    var strength = 0;
+
+    if (password.length === 0) {
+        strength = 0;
+    } else if (password.length < 6) {
+        strength = 25;
+    } else if (password.length < 10 && !/[!@#$%^&*]/.test(password)) {
+        strength = 50;
+    } else if (password.length >= 10 && /[!@#$%^&*]/.test(password)) {
+        strength = 100;
+    } else {
+        strength = 75;
+    }
+
+    bar.style.width = strength + '%';
+    bar.style.backgroundColor = strength <= 25 ? '#ff4d4d' : strength <= 50 ? '#ffcc00' : strength <= 75 ? '#66cc00' : '#00cc00';
+});</pre>
+                </div>
             </div>
         </section>
 
         <!-- Skills Section -->
         <section id="skills">
-            <h2>Skills</h2>
             <div class="content">
+                <h2>Skills</h2>
                 <ul class="skills-list">
                     <li>Programming: VBA, Java</li>
                     <li>Cybersecurity: Risk Assessment, Network Security</li>
@@ -73,36 +91,36 @@
 
         <!-- Experience Section -->
         <section id="experience">
-            <h2>Experience</h2>
             <div class="content">
+                <h2>Experience</h2>
                 <p>Work In Progress</p>
             </div>
         </section>
 
         <!-- Blog/Updates Section -->
         <section id="blog">
-            <h2>Updates</h2>
             <div class="content">
+                <h2>Updates</h2>
                 <p>Work In Progress</p>
             </div>
         </section>
 
         <!-- Resources Section -->
         <section id="resources">
-            <h2>Resources</h2>
             <div class="content">
+                <h2>Resources</h2>
                 <ul>
-                    <li><a href="https://www.cybrary.it/" target="_blank">Cybrary</a> - Free cybersecurity courses I’ve explored for Cyber Risk studies.</li>
-                    <li><a href="https://docs.microsoft.com/en-us/office/vba/api/overview/" target="_blank">VBA Docs</a> - My go-to for Excel automation tricks.</li>
-                    <li><a href="https://www.w3schools.com/java/" target="_blank">W3Schools Java</a> - Helped me master Java basics for CS.</li>
+                    <li><a href="https://www.cybrary.it/" target="_blank">Cybrary</a> - Free cybersecurity courses for Cyber Risk studies.</li>
+                    <li><a href="https://docs.microsoft.com/en-us/office/vba/api/overview/" target="_blank">VBA Docs</a> - Excel automation reference.</li>
+                    <li><a href="https://www.w3schools.com/java/" target="_blank">W3Schools Java</a> - Java learning resource.</li>
                 </ul>
             </div>
         </section>
 
         <!-- Social Section -->
         <section id="social">
-            <h2>Social</h2>
             <div class="content">
+                <h2>Social</h2>
                 <ul class="social-links">
                     <li>
                         <img src="x-icon.png" alt="X Icon" class="social-icon">
@@ -118,9 +136,9 @@
 
         <!-- Contact Section -->
         <section id="contact">
-            <h2>Contact Me</h2>
-            <div class="content contact-content">
-                <p>Hey there! I’d love to hear from you—whether it’s about a cool project, a cybersecurity question, or just to chat about LSU. Drop me a line anytime!</p>
+            <div class="content">
+                <h2>Contact Me</h2>
+                <p>Hey there! I’d love to connect—whether it’s about a project, cybersecurity, or LSU. Reach out anytime!</p>
                 <ul class="contact-list">
                     <li><strong>Email:</strong> <a href="mailto:colinfrancislee@gmail.com">colinfrancislee@gmail.com</a></li>
                     <li><strong>LSU Email:</strong> <a href="mailto:clee149@lsu.edu">clee149@lsu.edu</a></li>
