@@ -136,12 +136,22 @@ main {
     padding-top: 80px;
 }
 
-/* Sections */
+/* Sections with Fade-In Animation */
 section {
     padding: 60px 20px;
     text-align: center;
     background-color: var(--section-bg);
     transition: background-color 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero {
@@ -202,7 +212,36 @@ button:hover {
 
 #fun-fact:not(.hidden) {
     display: block;
+    display: block;
     opacity: 1;
+}
+
+/* Resume Link (New) */
+.resume-link {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.resume-link:hover {
+    background-color: #ffe066;
+}
+
+/* Education (New) */
+.education-item {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    background-color: var(--hero-bg);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 /* Password Strength Analyzer */
@@ -241,17 +280,6 @@ button:hover {
     text-align: center;
 }
 
-#code-display {
-    background-color: var(--code-bg);
-    padding: 15px;
-    border-radius: 5px;
-    font-family: monospace;
-    font-size: 0.9rem;
-    overflow-x: auto;
-    margin-top: 15px;
-    transition: opacity 0.3s ease;
-}
-
 /* Skills */
 .skills-list {
     display: grid;
@@ -273,6 +301,22 @@ button:hover {
 
 .skills-list li:hover {
     transform: translateY(-5px);
+}
+
+/* Certifications (New) */
+.cert-list {
+    list-style: none;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.cert-list li {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: var(--hero-bg);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 /* Social */
@@ -343,6 +387,23 @@ footer {
     text-align: center;
     padding: 20px;
     font-size: 0.9rem;
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.footer-links a {
+    color: var(--footer-text);
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: var(--link-hover);
 }
 
 /* Media Queries */
