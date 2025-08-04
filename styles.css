@@ -212,28 +212,22 @@ button:hover {
 
 #fun-fact:not(.hidden) {
     display: block;
-    display: block;
     opacity: 1;
 }
 
-/* Resume Link (New) */
+/* Resume Link */
 .resume-link {
-    display: inline-block;
-    background-color: var(--accent-color);
-    color: var(--primary-color);
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
+    color: var(--link-hover);
+    text-decoration: underline;
     font-weight: 600;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
+    transition: color 0.3s ease;
 }
 
 .resume-link:hover {
-    background-color: #ffe066;
+    color: #38165f;
 }
 
-/* Education (New) */
+/* Education */
 .education-item {
     max-width: 800px;
     margin: 0 auto;
@@ -242,6 +236,11 @@ button:hover {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.education-item:hover {
+    transform: translateY(-5px);
 }
 
 /* Password Strength Analyzer */
@@ -249,6 +248,11 @@ button:hover {
     max-width: 600px;
     margin: 0 auto;
     text-align: left;
+    transition: transform 0.3s ease;
+}
+
+.project-item:hover {
+    transform: translateY(-5px);
 }
 
 #password-input {
@@ -280,7 +284,7 @@ button:hover {
     text-align: center;
 }
 
-/* Skills */
+/* Skills & Resources (Shared Styling) */
 .skills-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -303,20 +307,19 @@ button:hover {
     transform: translateY(-5px);
 }
 
-/* Certifications (New) */
-.cert-list {
-    list-style: none;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: left;
-}
-
-.cert-list li {
-    margin-bottom: 15px;
-    padding: 10px;
+/* Certifications */
+#certifications .content p {
     background-color: var(--hero-bg);
+    padding: 15px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    max-width: 800px;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+
+#certifications .content p:hover {
+    transform: translateY(-5px);
 }
 
 /* Social */
@@ -325,6 +328,14 @@ button:hover {
     justify-content: center;
     gap: 20px;
     list-style: none;
+}
+
+.social-links li {
+    transition: transform 0.3s ease;
+}
+
+.social-links li:hover {
+    transform: translateY(-5px);
 }
 
 .social-icon {
@@ -378,6 +389,11 @@ button:hover {
 
 .contact-list li {
     margin-bottom: 10px;
+    transition: transform 0.3s ease;
+}
+
+.contact-list li:hover {
+    transform: translateY(-5px);
 }
 
 /* Footer */
@@ -395,6 +411,15 @@ footer {
     justify-content: center;
     gap: 15px;
     margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.footer-links li {
+    transition: transform 0.3s ease;
+}
+
+.footer-links li:hover {
+    transform: translateY(-5px);
 }
 
 .footer-links a {
@@ -429,5 +454,9 @@ footer {
 
     main {
         padding-top: 120px;
+    }
+
+    .footer-links {
+        flex-direction: column;
     }
 }
