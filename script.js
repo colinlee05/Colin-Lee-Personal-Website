@@ -1,80 +1,75 @@
-// Ensure DOM is fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Fun fact button
-    document.getElementById('fun-fact-btn').addEventListener('click', function() {
-        var funFact = document.getElementById('fun-fact');
-        if (funFact.classList.contains('hidden')) {
-            funFact.classList.remove('hidden');
-            this.textContent = 'Hide Fun Fact';
-        } else {
-            funFact.classList.add('hidden');
-            this.textContent = 'Show Fun Fact';
-        }
-    });
-
-    // Password strength checker with bar
-    document.getElementById('check-btn').addEventListener('click', function() {
-        var password = document.getElementById('password-input').value;
-        var bar = document.getElementById('strength-bar');
-        var strength = 0;
-
-        if (password.length === 0) {
-            strength = 0;
-        } else if (password.length < 6) {
-            strength = 25;
-        } else if (password.length < 10 && !/[!@#$%^&*]/.test(password)) {
-            strength = 50;
-        } else if (password.length >= 10 && /[!@#$%^&*]/.test(password)) {
-            strength = 100;
-        } else {
-            strength = 75;
-        }
-
-        bar.style.width = strength + '%';
-        bar.style.backgroundColor = strength <= 25 ? '#ff4d4d' : strength <= 50 ? '#ffcc00' : strength <= 75 ? '#66cc00' : '#00cc00';
-    });
-
-    // Show code button
-    document.getElementById('code-btn').addEventListener('click', function() {
-        var codeDisplay = document.getElementById('code-display');
-        if (codeDisplay.classList.contains('hidden')) {
-            codeDisplay.classList.remove('hidden');
-            this.textContent = 'Hide Code';
-        } else {
-            codeDisplay.classList.add('hidden');
-            this.textContent = 'Show Code';
-        }
-    });
-
-    // Dark mode toggle
+document.addEventListener('DOMContentLoaded', () => {
+    // Dark Mode Toggle with LocalStorage
     const toggleButton = document.getElementById('dark-mode-toggle');
-    toggleButton.addEventListener('click', function() {
-        const currentTheme = document.body.getAttribute('data-theme');
-        if (currentTheme === 'dark') {
-            document.body.removeAttribute('data-theme');
-            toggleButton.textContent = 'Toggle Dark Mode';
-        } else {
-            document.body.setAttribute('data-theme', 'dark');
-            toggleButton.textContent = 'Toggle Light Mode';
-        }
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    if (currentTheme === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+        toggleButton.textContent = 'Toggle Light Mode';
+    }
+    toggleButton.addEventListener('click', () => {
+        const isDark = document.body.getAttribute('data-theme') === 'dark';
+        document.body.setAttribute('data-theme', isDark ? '' : 'dark');
+        toggleButton.textContent = isDark ? 'Toggle Dark Mode' : 'Toggle Light Mode';
+        localStorage.setItem('theme', isDark ? 'light' : 'dark');
     });
 
-    // Scroll behavior for header
+    // Fun Fact Toggle
+    document.getElementById('fun-fact-btn').addEventListener('click', (e) => {
+        const funFact = document.getElementById('fun-fact');
+        funFact.classList.toggle('hidden');
+        e.target.textContent = funFact.classList.contains('hidden') ? 'Fun Fact' : 'Hide Fun Fact';
+    });
+
+    // Password Strength Analyzer (Real-time)
+    const passwordInput = document.getElementById('password-input');
+    const strengthBar = document.getElementById('strength-bar');
+    const strengthText = document.getElementById('strength-text');
+    passwordInput.addEventListener('input', () => {
+        const password = passwordInput.value;
+        let strength = 0;
+        if (password.length > 0) strength += 25;
+        if (password.length >= 6) strength += 25;
+        if (password.length >= 10) strength += 25;
+        if (/[!@#$%^&*]/.test(password)) strength += 25;
+
+        strengthBar.style.width = `${strength}%`;
+        let color = '#ff4d4d'; // Weak
+        let text = 'Weak';
+        if (strength > 25) { color = '#ffcc00'; text = 'Fair'; } // Fair
+        if (strength > 50) { color = '#66cc00'; text = 'Good'; } // Good
+        if (strength > 75) { color = '#00cc00'; text = 'Strong'; } // Strong
+        strengthBar.style.backgroundColor = color;
+        strengthText.textContent = text;
+    });
+
+    // Show Code Toggle
+    document.getElementById('code-btn').addEventListener('click', (e) => {
+        const codeDisplay = document.getElementById('code-display');
+        codeDisplay.classList.toggle('hidden');
+        e.target.textContent = codeDisplay.classList.contains('hidden') ? 'View Code Snippet' : 'Hide Code Snippet';
+    });
+
+    // Header Scroll Behavior
     let lastScrollTop = 0;
-    const header = document.querySelector('header');
-    const headerHeight = header.offsetHeight;
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        header.classList.toggle('hidden', scrollTop > lastScrollTop && scrollTop > header.offsetHeight);
+        lastScrollTop = Math.max(scrollTop, 0);
+    });
 
-    window.addEventListener('scroll', function() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    // Hamburger Menu
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+    });
 
-        if (scrollTop > lastScrollTop && scrollTop > headerHeight) {
-            // Scrolling down and past header height
-            header.classList.add('hidden');
-        } else {
-            // Scrolling up or at top
-            header.classList.remove('hidden');
-        }
-
-        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative scroll
+    // Contact Form (Basic handling - add backend for real submission)
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        console.log('Form submitted:', new FormData(e.target));
+        alert('Message sent! (Demo - integrate with a service for real use)');
     });
 });
