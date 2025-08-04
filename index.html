@@ -1,32 +1,39 @@
 <!DOCTYPE html>
-<link rel="icon" type="image/png" href="/Untitled(1).png">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colin Lee</title>
+    <meta name="description" content="Colin Lee - LSU ISDS Student Specializing in Cybersecurity and Computer Science">
+    <meta name="keywords" content="Colin Lee, LSU, cybersecurity, ISDS, computer science, portfolio">
+    <meta name="author" content="Colin Lee">
+    <meta property="og:title" content="Colin Lee - Portfolio">
+    <meta property="og:description" content="Explore the projects, skills, and experiences of Colin Lee, an LSU student passionate about cybersecurity and technology.">
+    <meta property="og:image" content="/colin-photo.png">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <title>Colin Lee - Portfolio</title>
+    <link rel="icon" type="image/png" href="/Untitled(1).png">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header id="header">
         <div class="header-content">
-            <img src="lsu-logo.png" alt="LSU Logo" class="header-img">
+            <img src="lsu-logo.png" alt="LSU Logo" class="header-img" loading="lazy">
             <h1>Colin Lee</h1>
         </div>
-        <nav>
-            <ul>
+        <nav role="navigation" aria-label="Main navigation">
+            <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+            <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
-                <li><a href="#blog">Updates</a></li>
                 <li><a href="#resources">Resources</a></li>
                 <li><a href="#social">Social</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <button id="dark-mode-toggle">Toggle Dark Mode</button>
+            <button id="dark-mode-toggle" aria-label="Toggle dark mode">Toggle Dark Mode</button>
         </nav>
     </header>
 
@@ -35,12 +42,12 @@
         <!-- About Me Section -->
         <section id="about" class="hero">
             <div class="content">
-                <img src="colin-photo.png" alt="Colin Lee" class="profile-img">
+                <img src="colin-photo.png" alt="Colin Lee" class="profile-img" loading="lazy">
                 <h2>About Me</h2>
                 <p>
-                    I'm Colin Lee, a Louisiana State University student majoring in Information Systems and Decision Sciences (ISDS) with a focus on Cyber Risk, and minoring in Computer Science. I’m driven by a passion for technology, cybersecurity, and problem-solving. Geaux Tigers!
+                    I'm Colin Lee, a Louisiana State University student majoring in Information Systems and Decision Sciences (ISDS) with a focus on Cyber Risk, and minoring in Computer Science. Driven by a passion for technology, cybersecurity, and problem-solving, I aim to contribute to secure and innovative digital solutions. Geaux Tigers!
                 </p>
-                <button id="fun-fact-btn">Fun Fact</button>
+                <button id="fun-fact-btn" aria-controls="fun-fact">Fun Fact</button>
                 <p id="fun-fact" class="hidden">I once debugged code all night during an LSU game week!</p>
             </div>
         </section>
@@ -51,34 +58,24 @@
                 <h2>Projects</h2>
                 <div class="project-item">
                     <h3>Password Strength Analyzer</h3>
-                    <p>Built a Java tool to assess password security, now live here. Test it out!</p>
-                    <input type="text" id="password-input" placeholder="Enter a password">
-                    <button id="check-btn">Check Strength</button>
+                    <p>A Java-based tool adapted for web use to evaluate password security. Enter a password below to see real-time strength assessment.</p>
+                    <input type="text" id="password-input" placeholder="Enter a password" aria-label="Password input">
                     <div id="strength-bar-container">
                         <div id="strength-bar"></div>
                     </div>
-                    <button id="code-btn">Show Code</button>
-                    <pre id="code-display" class="hidden">document.getElementById('check-btn').addEventListener('click', function() {
-    var password = document.getElementById('password-input').value;
-    var bar = document.getElementById('strength-bar');
-    var strength = 0;
-
-    if (password.length === 0) {
-        strength = 0;
-    } else if (password.length < 6) {
-        strength = 25;
-    } else if (password.length < 10 && !/[!@#$%^&*]/.test(password)) {
-        strength = 50;
-    } else if (password.length >= 10 && /[!@#$%^&*]/.test(password)) {
-        strength = 100;
-    } else {
-        strength = 75;
-    }
-
-    bar.style.width = strength + '%';
-    bar.style.backgroundColor = strength <= 25 ? '#ff4d4d' : strength <= 50 ? '#ffcc00' : strength <= 75 ? '#66cc00' : '#00cc00';
-});</pre>
+                    <p id="strength-text" class="strength-text"></p>
+                    <button id="code-btn" aria-controls="code-display">View Code Snippet</button>
+                    <pre id="code-display" class="hidden">// Sample JS for strength check (full Java tool available on request)
+const checkStrength = (password) => {
+  let strength = 0;
+  if (password.length > 0) strength += 25;
+  if (password.length >= 6) strength += 25;
+  if (password.length >= 10) strength += 25;
+  if (/[!@#$%^&*]/.test(password)) strength += 25;
+  return strength;
+};</pre>
                 </div>
+                <!-- Add more projects here as needed -->
             </div>
         </section>
 
@@ -87,9 +84,9 @@
             <div class="content">
                 <h2>Skills</h2>
                 <ul class="skills-list">
-                    <li>✓ Programming: VBA, Java</li>
-                    <li>✓ Cybersecurity: Risk Assessment, Network Security</li>
-                    <li>✓ Tools: Microsoft Office Suite Apps, Photoshop</li>
+                    <li>Programming: VBA, Java</li>
+                    <li>Cybersecurity: Risk Assessment, Network Security</li>
+                    <li>Tools: Microsoft Office Suite, Photoshop</li>
                 </ul>
             </div>
         </section>
@@ -98,15 +95,7 @@
         <section id="experience">
             <div class="content">
                 <h2>Experience</h2>
-                <p>Work In Progress</p>
-            </div>
-        </section>
-
-        <!-- Blog/Updates Section -->
-        <section id="blog">
-            <div class="content">
-                <h2>Updates</h2>
-                <p>Work In Progress</p>
+                <p>Building a strong foundation through academic projects and self-directed learning. Professional roles coming soon—stay tuned!</p>
             </div>
         </section>
 
@@ -115,9 +104,9 @@
             <div class="content">
                 <h2>Resources</h2>
                 <ul>
-                    <li><a href="https://www.cybrary.it/" target="_blank">Cybrary</a> - Free cybersecurity courses for Cyber Risk studies.</li>
-                    <li><a href="https://docs.microsoft.com/en-us/office/vba/api/overview/" target="_blank">VBA Docs</a> - Excel automation reference.</li>
-                    <li><a href="https://www.w3schools.com/java/" target="_blank">W3Schools Java</a> - Java learning resource.</li>
+                    <li><a href="https://www.cybrary.it/" target="_blank" rel="noopener noreferrer">Cybrary</a> - Free cybersecurity courses for Cyber Risk studies.</li>
+                    <li><a href="https://docs.microsoft.com/en-us/office/vba/api/overview/" target="_blank" rel="noopener noreferrer">VBA Docs</a> - Excel automation reference.</li>
+                    <li><a href="https://www.w3schools.com/java/" target="_blank" rel="noopener noreferrer">W3Schools Java</a> - Java learning resource.</li>
                 </ul>
             </div>
         </section>
@@ -128,12 +117,12 @@
                 <h2>Social</h2>
                 <ul class="social-links">
                     <li>
-                        <img src="x-icon.png" alt="X Icon" class="social-icon">
-                        <a href="https://twitter.com/colinlee05" target="_blank">@colinlee05</a>
+                        <img src="x-icon.png" alt="X Icon" class="social-icon" loading="lazy">
+                        <a href="https://twitter.com/colinlee05" target="_blank" rel="noopener noreferrer">@colinlee05</a>
                     </li>
                     <li>
-                        <img src="instagram-icon.png" alt="Instagram Icon" class="social-icon">
-                        <a href="https://www.instagram.com/colinlee.05" target="_blank">@colinlee.05</a>
+                        <img src="instagram-icon.png" alt="Instagram Icon" class="social-icon" loading="lazy">
+                        <a href="https://www.instagram.com/colinlee.05" target="_blank" rel="noopener noreferrer">@colinlee.05</a>
                     </li>
                 </ul>
             </div>
@@ -143,7 +132,13 @@
         <section id="contact">
             <div class="content">
                 <h2>Contact Me</h2>
-                <p>Hey there! I’d love to connect—whether it’s about a project, cybersecurity, or LSU. Reach out anytime!</p>
+                <p>I’d love to connect—whether about projects, cybersecurity, or LSU. Reach out anytime!</p>
+                <form id="contact-form" aria-label="Contact form">
+                    <input type="text" name="name" placeholder="Your Name" required aria-label="Your name">
+                    <input type="email" name="email" placeholder="Your Email" required aria-label="Your email">
+                    <textarea name="message" placeholder="Your Message" required aria-label="Your message"></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
                 <ul class="contact-list">
                     <li><strong>Email:</strong> <a href="mailto:colinfrancislee@gmail.com">colinfrancislee@gmail.com</a></li>
                     <li><strong>LSU Email:</strong> <a href="mailto:clee149@lsu.edu">clee149@lsu.edu</a></li>
@@ -154,7 +149,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>© 2025 Colin Lee</p>
+        <p>© 2025 Colin Lee. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
