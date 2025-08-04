@@ -1,9 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // EmailJS Initialization (Replace with your Public Key)
-    emailjs.init({
-        publicKey: 'YOUR_EMAILJS_PUBLIC_KEY', // From EmailJS dashboard
-    });
-
     // Dark Mode Toggle with LocalStorage
     const toggleButton = document.getElementById('dark-mode-toggle');
     const currentTheme = localStorage.getItem('theme') || 'light';
@@ -64,16 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger.setAttribute('aria-expanded', navLinks.classList.contains('active'));
     });
 
-    // Contact Form Submission with EmailJS
-    document.getElementById('contact-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        emailjs.sendForm('YOUR_EMAILJS_SERVICE_ID', 'YOUR_EMAILJS_TEMPLATE_ID', e.target) // Replace with your Service ID and Template ID
-            .then(() => {
-                alert('Message sent successfully!');
-                e.target.reset(); // Clear form
-            }, (error) => {
-                alert('Failed to send message. Please try again.');
-                console.error('EmailJS Error:', error);
-            });
+    // Back to Top Button
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+        backToTop.classList.toggle('visible', window.pageYOffset > 100);
+    });
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 });
