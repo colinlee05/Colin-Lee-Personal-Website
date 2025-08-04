@@ -49,7 +49,7 @@
                 <img src="colin-photo.png" alt="Colin Lee" class="profile-img" loading="lazy">
                 <h2>About Me</h2>
                 <p>
-                    I'm Colin Lee, a Louisiana State University student majoring in Information Systems and Decision Sciences (ISDS) with a focus on Cyber Risk, and minoring in Computer Science. Driven by a passion for technology, cybersecurity, and problem-solving, I aim to contribute to secure and innovative digital solutions. Geaux Tigers! <a href="resume.pdf" download class="resume-link">Download my resume (PDF)</a>.
+                    I'm Colin Lee, a Louisiana State University student majoring in Information Systems and Decision Sciences (ISDS) with a focus on Cyber Risk, and minoring in Computer Science. Driven by a passion for technology, cybersecurity, and problem-solving, I aim to contribute to secure and innovative digital solutions. Geaux Tigers!
                 </p>
                 <button id="fun-fact-btn" aria-controls="fun-fact">Fun Fact</button>
                 <p id="fun-fact" class="hidden">I once debugged code all night during an LSU game week!</p>
@@ -60,7 +60,7 @@
         <section id="education">
             <div class="content">
                 <h2>Education</h2>
-                <div class="education-item">
+                <div class="content-block education-item">
                     <h3>Louisiana State University (LSU)</h3>
                     <p>Bachelor of Science in Information Systems and Decision Sciences (ISDS), Focus: Cyber Risk</p>
                     <p>Minor: Computer Science</p>
@@ -74,7 +74,7 @@
         <section id="projects">
             <div class="content">
                 <h2>Projects</h2>
-                <div class="project-item">
+                <div class="content-block project-item">
                     <h3>Password Strength Analyzer</h3>
                     <p>A Java-based tool adapted for web use to evaluate password security. Enter a password below to see real-time strength assessment.</p>
                     <input type="text" id="password-input" placeholder="Enter a password" aria-label="Password input">
@@ -103,7 +103,9 @@
         <section id="experience">
             <div class="content">
                 <h2>Experience</h2>
-                <p>Building a strong foundation through academic projects and self-directed learning. Professional roles coming soon—stay tuned!</p>
+                <div class="content-block">
+                    <p>Building a strong foundation through academic projects and self-directed learning. Professional roles coming soon—stay tuned!</p>
+                </div>
             </div>
         </section>
 
@@ -111,7 +113,9 @@
         <section id="certifications">
             <div class="content">
                 <h2>Certifications</h2>
-                <p>Work in Progress</p>
+                <div class="content-block">
+                    <p>Work in Progress</p>
+                </div>
             </div>
         </section>
 
@@ -119,7 +123,7 @@
         <section id="resources">
             <div class="content">
                 <h2>Resources</h2>
-                <ul class="skills-list"> <!-- Reused class for grey box styling -->
+                <ul class="skills-list">
                     <li><a href="https://www.cybrary.it/" target="_blank" rel="noopener noreferrer">Cybrary</a> - Free cybersecurity courses for Cyber Risk studies.</li>
                     <li><a href="https://docs.microsoft.com/en-us/office/vba/api/overview/" target="_blank" rel="noopener noreferrer">VBA Docs</a> - Excel automation reference.</li>
                     <li><a href="https://www.w3schools.com/java/" target="_blank" rel="noopener noreferrer">W3Schools Java</a> - Java learning resource.</li>
@@ -131,7 +135,7 @@
         <section id="social">
             <div class="content">
                 <h2>Social</h2>
-                <ul class="social-links">
+                <ul class="skills-list social-list"> <!-- Extended for grey boxes -->
                     <li>
                         <img src="x-icon.png" alt="X Icon" class="social-icon" loading="lazy">
                         <a href="https://twitter.com/colinlee05" target="_blank" rel="noopener noreferrer">@colinlee05</a>
@@ -177,6 +181,7 @@
             <li><a href="#social">Social</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
+        <a href="resume.pdf" download class="resume-link">Download Resume (PDF)</a>
     </footer>
 
     <script src="script.js"></script>
