@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta name="description" content="Colin Lee - LSU ISDS Student Specializing in Cybersecurity and Computer Science">
     <meta name="keywords" content="Colin Lee, LSU, cybersecurity, ISDS, computer science, portfolio">
     <meta name="author" content="Colin Lee">
@@ -14,8 +15,6 @@
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <!-- EmailJS SDK (for contact form) -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -33,6 +32,8 @@
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#blog">Blog/Updates</a></li>
+                <li><a href="#publications">Publications</a></li>
                 <li><a href="#resources">Resources</a></li>
                 <li><a href="#social">Social</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -119,6 +120,26 @@
             </div>
         </section>
 
+        <!-- Blog/Updates Section (New) -->
+        <section id="blog">
+            <div class="content">
+                <h2>Blog/Updates</h2>
+                <div class="content-block">
+                    <p>Work in Progress</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section (New) -->
+        <section id="publications">
+            <div class="content">
+                <h2>Publications</h2>
+                <div class="content-block">
+                    <p>Work in Progress</p>
+                </div>
+            </div>
+        </section>
+
         <!-- Resources Section -->
         <section id="resources">
             <div class="content">
@@ -138,11 +159,13 @@
                 <ul class="skills-list social-list">
                     <li class="social-item">
                         <img src="x-icon.png" alt="X Icon" class="social-icon" loading="lazy">
-                        <a href="https://twitter.com/colinlee05" target="_blank" rel="noopener noreferrer">@colinlee05</a>
+                        <span>X (fka Twitter):</span>
+                        <a href="https://twitter.com/colinlee05" target="_blank" rel="noopener noreferrer" title="Follow on X">@colinlee05</a>
                     </li>
                     <li class="social-item">
                         <img src="instagram-icon.png" alt="Instagram Icon" class="social-icon" loading="lazy">
-                        <a href="https://www.instagram.com/colinlee.05" target="_blank" rel="noopener noreferrer">@colinlee.05</a>
+                        <span>Instagram:</span>
+                        <a href="https://www.instagram.com/colinlee.05" target="_blank" rel="noopener noreferrer" title="Follow on Instagram">@colinlee.05</a>
                     </li>
                 </ul>
             </div>
@@ -153,12 +176,6 @@
             <div class="content">
                 <h2>Contact Me</h2>
                 <p>I’d love to connect—whether about projects, cybersecurity, or LSU. Reach out anytime!</p>
-                <form id="contact-form" aria-label="Contact form">
-                    <input type="text" name="name" placeholder="Your Name" required aria-label="Your name">
-                    <input type="email" name="email" placeholder="Your Email" required aria-label="Your email">
-                    <textarea name="message" placeholder="Your Message" required aria-label="Your message"></textarea>
-                    <button type="submit">Send Message</button>
-                </form>
                 <ul class="contact-list">
                     <li><strong>Email:</strong> <a href="mailto:colinfrancislee@gmail.com">colinfrancislee@gmail.com</a></li>
                     <li><strong>LSU Email:</strong> <a href="mailto:clee149@lsu.edu">clee149@lsu.edu</a></li>
@@ -177,12 +194,17 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#blog">Blog/Updates</a></li>
+            <li><a href="#publications">Publications</a></li>
             <li><a href="#resources">Resources</a></li>
             <li><a href="#social">Social</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
         <a href="resume.pdf" download class="resume-link">Download Resume (PDF)</a>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to top">↑</button>
 
     <script src="script.js"></script>
 </body>
