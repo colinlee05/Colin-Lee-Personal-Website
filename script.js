@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // EmailJS Initialization (Replace with your Public Key)
+    emailjs.init({
+        publicKey: 'YOUR_EMAILJS_PUBLIC_KEY', // From EmailJS dashboard
+    });
+
     // Dark Mode Toggle with LocalStorage
     const toggleButton = document.getElementById('dark-mode-toggle');
     const currentTheme = localStorage.getItem('theme') || 'light';
@@ -35,18 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
         strengthBar.style.width = `${strength}%`;
         let color = '#ff4d4d'; // Weak
         let text = 'Weak';
-        if (strength > 25) { color = '#ffcc00'; text = 'Fair'; } // Fair
-        if (strength > 50) { color = '#66cc00'; text = 'Good'; } // Good
-        if (strength > 75) { color = '#00cc00'; text = 'Strong'; } // Strong
+        if (strength > 25) { color = '#ffcc00'; text = 'Fair'; }
+        if (strength > 50) { color = '#66cc00'; text = 'Good'; }
+        if (strength > 75) { color = '#00cc00'; text = 'Strong'; }
         strengthBar.style.backgroundColor = color;
         strengthText.textContent = text;
-    });
-
-    // Show Code Toggle
-    document.getElementById('code-btn').addEventListener('click', (e) => {
-        const codeDisplay = document.getElementById('code-display');
-        codeDisplay.classList.toggle('hidden');
-        e.target.textContent = codeDisplay.classList.contains('hidden') ? 'View Code Snippet' : 'Hide Code Snippet';
     });
 
     // Header Scroll Behavior
@@ -66,10 +64,16 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger.setAttribute('aria-expanded', navLinks.classList.contains('active'));
     });
 
-    // Contact Form (Basic handling - add backend for real submission)
+    // Contact Form Submission with EmailJS
     document.getElementById('contact-form').addEventListener('submit', (e) => {
         e.preventDefault();
-        console.log('Form submitted:', new FormData(e.target));
-        alert('Message sent! (Demo - integrate with a service for real use)');
+        emailjs.sendForm('YOUR_EMAILJS_SERVICE_ID', 'YOUR_EMAILJS_TEMPLATE_ID', e.target) // Replace with your Service ID and Template ID
+            .then(() => {
+                alert('Message sent successfully!');
+                e.target.reset(); // Clear form
+            }, (error) => {
+                alert('Failed to send message. Please try again.');
+                console.error('EmailJS Error:', error);
+            });
     });
 });
