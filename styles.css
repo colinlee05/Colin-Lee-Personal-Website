@@ -11,6 +11,7 @@
     --link-hover: var(--accent-color);
     --code-bg: #f6f8fa;
     --border-color: #dee2e6;
+    --content-block-bg: #f8f9fa; /* Slight grey for boxes */
 }
 
 [data-theme="dark"] {
@@ -25,6 +26,7 @@
     --link-hover: #ffe066;
     --code-bg: #2d2d2d;
     --border-color: #333333;
+    --content-block-bg: #252525;
 }
 
 /* Smooth scrolling & Transitions */
@@ -136,7 +138,7 @@ main {
     padding-top: 80px;
 }
 
-/* Sections with Fade-In Animation */
+/* Sections with Fade-In Animation and Even Spacing */
 section {
     padding: 60px 20px;
     text-align: center;
@@ -215,46 +217,52 @@ button:hover {
     opacity: 1;
 }
 
-/* Resume Link */
-.resume-link {
-    color: var(--link-hover);
-    text-decoration: underline;
-    font-weight: 600;
-    transition: color 0.3s ease;
+/* Consistent Content Blocks (Grey Boxes with Hover) */
+.content-block {
+    background-color: var(--content-block-bg);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin: 0 auto 20px;
+    max-width: 800px;
+    text-align: left;
+    transition: transform 0.3s ease;
 }
 
-.resume-link:hover {
-    color: #38165f;
+.content-block:hover {
+    transform: translateY(-5px);
 }
 
-/* Education */
-.education-item {
+/* Skills & Resources & Social (List-Based Blocks) */
+.skills-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    list-style: none;
+    text-align: left;
     max-width: 800px;
     margin: 0 auto;
-    text-align: left;
-    background-color: var(--hero-bg);
-    padding: 20px;
+}
+
+.skills-list li {
+    background-color: var(--content-block-bg);
+    padding: 15px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease;
 }
 
-.education-item:hover {
+.skills-list li:hover {
     transform: translateY(-5px);
 }
 
-/* Password Strength Analyzer */
-.project-item {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: left;
-    transition: transform 0.3s ease;
+.social-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.project-item:hover {
-    transform: translateY(-5px);
-}
-
+/* Password Strength Analyzer (Inside Project Block) */
 #password-input {
     width: 100%;
     padding: 10px;
@@ -284,80 +292,14 @@ button:hover {
     text-align: center;
 }
 
-/* Skills & Resources (Shared Styling) */
-.skills-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    list-style: none;
-    text-align: left;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.skills-list li {
-    background-color: var(--hero-bg);
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
-}
-
-.skills-list li:hover {
-    transform: translateY(-5px);
-}
-
-/* Certifications */
-#certifications .content p {
-    background-color: var(--hero-bg);
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    max-width: 800px;
-    margin: 0 auto;
-    transition: transform 0.3s ease;
-}
-
-#certifications .content p:hover {
-    transform: translateY(-5px);
-}
-
-/* Social */
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    list-style: none;
-}
-
-.social-links li {
-    transition: transform 0.3s ease;
-}
-
-.social-links li:hover {
-    transform: translateY(-5px);
-}
-
+/* Social Icons */
 .social-icon {
     width: 30px;
     transition: transform 0.3s ease;
 }
 
-.social-links a:hover .social-icon {
+.social-list li:hover .social-icon {
     transform: scale(1.1);
-}
-
-.social-links a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.social-links a:hover {
-    color: var(--link-hover);
 }
 
 /* Contact */
@@ -385,10 +327,17 @@ button:hover {
 .contact-list {
     list-style: none;
     text-align: center;
+    display: grid;
+    gap: 20px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .contact-list li {
-    margin-bottom: 10px;
+    background-color: var(--content-block-bg);
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease;
 }
 
@@ -431,7 +380,20 @@ footer {
     color: var(--link-hover);
 }
 
-/* Media Queries */
+.resume-link {
+    display: block;
+    margin-top: 20px;
+    color: var(--link-hover);
+    text-decoration: underline;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.resume-link:hover {
+    color: #38165f;
+}
+
+/* Media Queries for Mobile */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
@@ -456,7 +418,40 @@ footer {
         padding-top: 120px;
     }
 
+    section {
+        padding: 40px 15px; /* Reduced for mobile */
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .content-block,
+    .skills-list {
+        grid-template-columns: 1fr; /* Stack on mobile */
+    }
+
     .footer-links {
         flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (hover: none) {
+    /* Disable hover effects on touch devices */
+    .content-block:hover,
+    .skills-list li:hover,
+    .social-links li:hover,
+    .contact-list li:hover,
+    .footer-links li:hover {
+        transform: none;
     }
 }
