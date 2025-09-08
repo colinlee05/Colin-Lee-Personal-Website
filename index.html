@@ -3,181 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta name="description" content="Colin Lee - LSU ISDS Student Specializing in Cybersecurity and Computer Science">
+    <meta name="keywords" content="Colin Lee, LSU, cybersecurity, ISDS, computer science, portfolio">
+    <meta name="author" content="Colin Lee">
+    <meta property="og:title" content="Colin Lee">
+    <meta property="og:description" content="Explore the projects, skills, and experiences of Colin Lee, an LSU student passionate about cybersecurity and technology.">
+    <meta property="og:image" content="/colin-photo.png">
+    <meta property="og:url" content="https://colinlee.me">
     <title>Colin Lee</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <!-- Header -->
+    <header id="header">
         <div class="header-content">
-            <img src="profile.jpg" alt="Profile Picture" class="header-img"> <!-- Assuming your image; update path -->
+            <img src="lsu-logo.png" alt="LSU Logo" class="header-img" loading="lazy">
             <h1>Colin Lee</h1>
         </div>
-        <nav>
-            <ul>
+        <nav role="navigation" aria-label="Main navigation">
+            <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+            <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#education">Education</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#certifications">Certifications</a></li>
-                <li><a href="#updates">Updates</a></li>
+                <li><a href="#blog">Blog/Updates</a></li>
                 <li><a href="#publications">Publications</a></li>
                 <li><a href="#resources">Resources</a></li>
                 <li><a href="#social">Social</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <button id="dark-mode-toggle">Toggle Dark Mode</button>
+            <button id="dark-mode-toggle" aria-label="Toggle dark mode">Toggle Dark Mode</button>
         </nav>
     </header>
 
+    <!-- Main Content -->
     <main>
+        <!-- About Me Section -->
         <section id="about" class="hero">
             <div class="content">
-                <img src="profile.jpg" alt="Colin and Emma" class="profile-img"> <!-- Your image with Emma -->
+                <img src="colin-photo.png" alt="Colin Lee" class="profile-img" loading="lazy">
                 <h2>About Me</h2>
-                <p>I'm Colin Lee, a Louisiana State University student majoring in Information Systems and Analytics (ISDS) with a focus on Cyber Risk, and minoring in Computer Science. I’m driven by a passion for technology, cybersecurity, and problem-solving. Geaux Tigers!</p>
-                
-                <h3>Education</h3>
-                <p><strong>Bachelor of Science in Information Systems & Analytics (ISDS)</strong><br>
-                The ISDS program at LSU equips students with skills in data analytics, information systems, and decision-making technologies to drive business success. My concentration in Cyber Risk focuses on identifying and mitigating digital threats, including security management, risk assessment, and protecting organizational assets from cyber attacks. Expected graduation: Spring 2026. GPA: 3.89.</p>
-                
-                <p><strong>Minor in Computer Science</strong><br>
-                This minor builds essential programming and computational thinking skills that directly support my ISDS major, particularly in cyber risk—enabling me to develop secure code, automate risk analysis tools, and integrate tech solutions for business security challenges.</p>
-                
-                <p><strong>Relevant Coursework:</strong><br>
-                • ISDS 2000: Introduction to Business Analytics<br>
-                • ISDS 4070: Special Topics in Cyber Risk<br>
-                • CS 3200: Introduction to Programming (Python/Java)</p> <!-- Placeholder; update with actuals -->
-
-                <button id="fun-fact-btn">Show Fun Fact</button>
+                <p>
+                    I'm Colin Lee, a Louisiana State University student majoring in Information Systems and Decision Sciences (ISDS) with a focus on Cyber Risk, and minoring in Computer Science. Driven by a passion for technology, cybersecurity, and problem-solving, I aim to contribute to secure and innovative digital solutions. Geaux Tigers!
+                </p>
+                <button id="fun-fact-btn" aria-controls="fun-fact">Fun Fact</button>
                 <p id="fun-fact" class="hidden">I once debugged code all night during an LSU game week!</p>
             </div>
         </section>
 
-        <section id="projects">
+        <!-- Education Section -->
+        <section id="education">
             <div class="content">
-                <h2>Projects</h2>
-                
-                <h3>Password Strength Analyzer</h3>
-                <p>Built a Java tool to assess password security, now live here. Test it out!</p>
-                
-                <input type="password" id="password-input" placeholder="Enter password">
-                <button id="check-btn">Check Strength</button>
-                <div id="strength-bar-container">
-                    <div id="strength-bar"></div>
+                <h2>Education</h2>
+                <div class="content-block education-item">
+                    <h3>Louisiana State University (LSU)</h3>
+                    <p>Bachelor of Science in Information Systems and Decision Sciences (ISDS), Focus: Cyber Risk</p>
+                    <p>Minor: Computer Science</p>
+                    <p>Expected Graduation: May 2027 | GPA: 3.89/4.0</p>
+                    <p>Relevant Coursework: Cybersecurity Fundamentals, Data Structures, Network Security, Database Management</p>
                 </div>
-                
-                <button id="code-btn">Show Code</button>
-                <pre id="code-display" class="hidden">document.getElementById('check-btn').addEventListener('click', function() {
-    var password = document.getElementById('password-input').value;
-    var bar = document.getElementById('strength-bar');
-    var strength = 0;
-
-    if (password.length === 0) {
-        strength = 0;
-    } else if (password.length < 6) {
-        strength = 25;
-    } else if (password.length < 10 && !/[!@#$%^&*]/.test(password)) {
-        strength = 50;
-    } else if (password.length >= 10 && /[!@#$%^&*]/.test(password)) {
-        strength = 100;
-    } else {
-        strength = 75;
-    }
-
-    bar.style.width = strength + '%';
-    bar.style.backgroundColor = strength <= 25 ? '#ff4d4d' : strength <= 50 ? '#ffcc00' : strength <= 75 ? '#66cc00' : '#00cc00';
-});</pre>
             </div>
         </section>
 
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="content">
+                <h2>Projects</h2>
+                <div class="content-block project-item">
+                    <h3>Password Strength Analyzer</h3>
+                    <p>A Java-based tool adapted for web use to evaluate password security. Enter a password below to see real-time strength assessment.</p>
+                    <input type="text" id="password-input" placeholder="Enter a password" aria-label="Password input">
+                    <div id="strength-bar-container">
+                        <div id="strength-bar"></div>
+                    </div>
+                    <p id="strength-text" class="strength-text"></p>
+                </div>
+                <!-- Add more projects here as needed -->
+            </div>
+        </section>
+
+        <!-- Skills Section -->
         <section id="skills">
             <div class="content">
                 <h2>Skills</h2>
                 <ul class="skills-list">
-                    <li>✓ Programming: VBA, Java, Python (basics from CS minor)</li>
-                    <li>✓ Cybersecurity: Risk Assessment, Network Security, Threat Mitigation</li>
-                    <li>✓ Data Analytics: SQL, Business Intelligence Tools</li>
-                    <li>✓ Tools: Microsoft Office Suite, Photoshop, Property Management Software</li>
+                    <li>Programming: VBA, Java</li>
+                    <li>Cybersecurity: Risk Assessment, Network Security</li>
+                    <li>Tools: Microsoft Office Suite, Photoshop</li>
                 </ul>
             </div>
         </section>
 
+        <!-- Experience Section -->
         <section id="experience">
             <div class="content">
                 <h2>Experience</h2>
-                <h3>Administrative Assistant, MAC-RE LLC</h3>
-                <p><em>Metairie, Louisiana | Summer 2024</em></p> <!-- Update dates -->
-                <p>MAC-RE LLC is a leading real estate management firm providing affordable housing solutions, property management, appraisals, and sales across Louisiana, Texas, and Mississippi. In this role, I handled computer filing and data entry for property records, organized digital documents using management software, performed basic IT support for office systems, and assisted in administrative tasks to streamline operations.</p>
+                <div class="content-block experience-item">
+                    <p>Building a strong foundation through academic projects and self-directed learning. Professional roles coming soon—stay tuned!</p>
+                </div>
             </div>
         </section>
 
+        <!-- Certifications Section -->
         <section id="certifications">
             <div class="content">
                 <h2>Certifications</h2>
-                <ul>
-                    <li>Working towards Certified Information Systems Auditor (CISA) – Prepared through LSU ISDS 4096: Cyber Risk Management course, focusing on auditing, control, and security of information systems.</li>
-                    <li>Preparation for Certified Information Systems Security Professional (CISSP) – Aligned with ISDS 4070 special topics; passing the exam grants credit hours.</li>
-                </ul>
+                <div class="content-block certifications-item">
+                    <p>Work in Progress</p>
+                </div>
             </div>
         </section>
 
-        <section id="updates">
+        <!-- Blog/Updates Section (New) -->
+        <section id="blog">
             <div class="content">
-                <h2>Updates</h2>
-                <h3>Life Update</h3>
-                <p>In the profile picture, the second person is my girlfriend, Emma—she's heading into med school soon, and we're both aiming for LSU's programs. Excited for what's next! If you're wondering, that's us cheering on the Tigers together.</p>
+                <h2>Blog/Updates</h2>
+                <div class="content-block">
+                    <p>Work in Progress</p>
+                </div>
             </div>
         </section>
 
+        <!-- Publications Section (New) -->
         <section id="publications">
             <div class="content">
                 <h2>Publications</h2>
-                <p>None at this time. Stay tuned for future research in cyber risk and analytics!</p>
+                <div class="content-block">
+                    <p>Work in Progress</p>
+                </div>
             </div>
         </section>
 
+        <!-- Resources Section -->
         <section id="resources">
             <div class="content">
                 <h2>Resources</h2>
-                <ul class="contact-list">
-                    <li><strong>Cybrary</strong> - Free cybersecurity courses for Cyber Risk studies. <a href="https://www.cybrary.it/" target="_blank">Visit</a></li>
-                    <li><strong>VBA Docs</strong> - Excel automation reference. <a href="https://docs.microsoft.com/en-us/office/vba/api/overview/" target="_blank">Visit</a></li>
-                    <li><strong>W3Schools Java</strong> - Java learning resource. <a href="https://www.w3schools.com/java/" target="_blank">Visit</a></li>
-                    <li><strong>OWASP</strong> - Open Web Application Security Project for cybersecurity best practices and vulnerability guides. <a href="https://owasp.org/" target="_blank">Visit</a></li>
-                    <li><strong>Coursera/Google Cybersecurity Certificate</strong> - Affordable entry-level cert in cyber fundamentals. <a href="https://www.coursera.org/professional-certificates/google-cybersecurity" target="_blank">Visit</a></li>
-                    <li><strong>LSU Center for Internal Auditing & Cybersecurity</strong> - University resources for risk management and cert prep. <a href="https://www.lsu.edu/business/accounting/cia.php" target="_blank">Visit</a></li>
+                <ul class="skills-list">
+                    <li><a href="https://www.cybrary.it/" target="_blank" rel="noopener noreferrer">Cybrary</a> - Free cybersecurity courses for Cyber Risk studies.</li>
+                    <li><a href="https://docs.microsoft.com/en-us/office/vba/api/overview/" target="_blank" rel="noopener noreferrer">VBA Docs</a> - Excel automation reference.</li>
+                    <li><a href="https://www.w3schools.com/java/" target="_blank" rel="noopener noreferrer">W3Schools Java</a> - Java learning resource.</li>
                 </ul>
             </div>
         </section>
 
+        <!-- Social Section -->
         <section id="social">
             <div class="content">
                 <h2>Social</h2>
-                <ul class="social-links">
-                    <li><img src="twitter-icon.png" alt="Twitter" class="social-icon"> <a href="https://twitter.com/colinlee05" target="_blank">@colinlee05</a></li>
-                    <li><img src="instagram-icon.png" alt="Instagram" class="social-icon"> <a href="https://instagram.com/colinlee.05" target="_blank">@colinlee.05</a></li>
+                <ul class="skills-list social-list">
+                    <li class="social-item">
+                        <img src="x-icon.png" alt="X Icon" class="social-icon" loading="lazy">
+                        <span>X (fka Twitter):</span>
+                        <a href="https://twitter.com/colinlee05" target="_blank" rel="noopener noreferrer" title="Follow on X">@colinlee05</a>
+                    </li>
+                    <li class="social-item">
+                        <img src="instagram-icon.png" alt="Instagram Icon" class="social-icon" loading="lazy">
+                        <span>Instagram:</span>
+                        <a href="https://www.instagram.com/colinlee.05" target="_blank" rel="noopener noreferrer" title="Follow on Instagram">@colinlee.05</a>
+                    </li>
                 </ul>
             </div>
         </section>
 
+        <!-- Contact Section -->
         <section id="contact">
             <div class="content">
                 <h2>Contact Me</h2>
-                <p>Hey there! I’d love to connect—whether it’s about a project, cybersecurity, or LSU. Reach out anytime!</p>
+                <p>I’d love to connect—whether about projects, cybersecurity, or LSU. Reach out anytime!</p>
                 <ul class="contact-list">
                     <li><strong>Email:</strong> <a href="mailto:colinfrancislee@gmail.com">colinfrancislee@gmail.com</a></li>
                     <li><strong>LSU Email:</strong> <a href="mailto:clee149@lsu.edu">clee149@lsu.edu</a></li>
                 </ul>
-                <a href="resume.pdf" target="_blank"><button>View Resume</button></a> <!-- Changed to open in new tab instead of download -->
             </div>
         </section>
     </main>
 
+    <!-- Footer -->
     <footer>
-        <p>© 2025 Colin Lee</p>
+        <p>© 2025 Colin Lee. All rights reserved.</p>
+        <ul class="footer-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#blog">Blog/Updates</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#social">Social</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="resume.pdf" download class="resume-link">Download Resume (PDF)</a>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to top">↑</button>
 
     <script src="script.js"></script>
 </body>
