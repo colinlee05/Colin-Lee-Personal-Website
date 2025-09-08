@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Header Scroll Behavior
     let lastScrollTop = 0;
-    const header = document.getElementById('header');
+    const header = document.querySelector('header');
     window.addEventListener('scroll', () => {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         header.classList.toggle('hidden', scrollTop > lastScrollTop && scrollTop > header.offsetHeight);
