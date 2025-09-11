@@ -220,27 +220,26 @@ button:hover {
 /* Consistent Content Blocks (Grey Boxes with Hover and Border) */
 .content-block {
     background-color: var(--content-block-bg);
-    padding: 20px;
-    border-radius: 5px;
+    padding: 25px;
+    border-radius: 10px;
     border: 1px solid var(--border-color);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    margin: 0 auto 20px;
-    max-width: 800px;
-    text-align: center; /* Center text in boxes */
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
 }
 
 .content-block:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Skills & Resources & Social (List-Based Blocks) */
 .skills-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     list-style: none;
-    text-align: center; /* Center text in list items */
+    text-align: left;
     max-width: 800px;
     margin: 0 auto;
 }
@@ -248,8 +247,8 @@ button:hover {
 .skills-list li {
     background-color: var(--content-block-bg);
     padding: 15px;
-    border-radius: 5px;
-    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease;
 }
@@ -258,22 +257,41 @@ button:hover {
     transform: translateY(-5px);
 }
 
+.social-list {
+    list-style: none;
+    display: grid;
+    gap: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 .social-list li {
     display: flex;
     align-items: center;
-    justify-content: center; /* Center content horizontally */
+    justify-content: center;
     gap: 10px;
     padding: 15px;
-    flex-wrap: wrap; /* Wrap on small screens */
+    flex-wrap: wrap;
 }
 
 .social-item span {
     font-weight: 600;
 }
 
+.social-item a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-item a:hover {
+    color: var(--link-hover);
+}
+
 /* Password Strength Analyzer */
 #password-input {
     width: 100%;
+    max-width: 300px;
     padding: 10px;
     border: 1px solid var(--border-color);
     border-radius: 5px;
@@ -397,6 +415,7 @@ footer {
     opacity: 0;
     transition: opacity 0.3s ease, transform 0.3s ease;
     z-index: 1000;
+    font-size: 1.2rem;
 }
 
 #back-to-top.visible {
@@ -411,6 +430,11 @@ footer {
 @media (max-width: 768px) {
     header {
         flex-direction: column;
+        padding: 10px;
+    }
+
+    .header-content {
+        margin-bottom: 10px;
     }
 
     nav ul {
@@ -433,7 +457,7 @@ footer {
     }
 
     section {
-        padding: 40px 15px; /* Reduced for mobile */
+        padding: 40px 15px;
     }
 
     h2 {
@@ -450,11 +474,11 @@ footer {
 
     .content-block,
     .skills-list {
-        grid-template-columns: 1fr; /* Stack on mobile */
+        grid-template-columns: 1fr;
     }
 
     .social-list li {
-        justify-content: center; /* Center on mobile */
+        justify-content: center;
     }
 
     .footer-links {
@@ -467,13 +491,17 @@ footer {
         bottom: 10px;
         right: 10px;
     }
+
+    #password-input {
+        max-width: 100%;
+    }
 }
 
 @media (hover: none) {
     /* Disable hover effects on touch devices */
     .content-block:hover,
     .skills-list li:hover,
-    .social-links li:hover,
+    .social-list li:hover,
     .contact-list li:hover,
     .footer-links li:hover {
         transform: none;
