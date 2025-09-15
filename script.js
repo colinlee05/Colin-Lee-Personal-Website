@@ -11,8 +11,8 @@ hamburger.addEventListener('click', () => {
 // Dark Mode Toggle (Fixed for PC/Mobile)
 const darkModeToggle = document.getElementById('dark-mode-toggle');
 darkModeToggle.addEventListener('click', () => {
-  const currentTheme = document.body.getAttribute('data-theme');
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  const currentTheme = document.body.getAttribute('data-theme') || 'light';
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
   document.body.setAttribute('data-theme', newTheme);
   localStorage.setItem('theme', newTheme);
 });
@@ -38,9 +38,9 @@ function assessPasswordStrength(password) {
   let strength = 0;
   if (password.length >= 8) strength++;
   if (password.match(/[a-z]/)) strength++;
-  if (password.match(/[A-Z]/)) strength++;
-  if (password.match(/[0-9]/)) strength++;
-  if (password.match(/[^a-zA-Z0-9]/)) strength++;
+  if (password.match/[A-Z]/) strength++;
+  if (password.match/[0-9]/) strength++;
+  if (password.match/[^a-zA-Z0-9]/) strength++;
 
   switch (strength) {
     case 0:
@@ -111,7 +111,7 @@ if (contactForm) {
         showFormMessage(data.error || 'Message not delivered - probably the captcha failed. Please try again. ⚠️', 'error');
       }
     } catch (error) {
-      showFormMessage('Message not delivered - probably the captcha failed. Please try again. ⚠️', 'error');
+        showFormMessage('Message not delivered - probably the captcha failed. Please try again. ⚠️', 'error');
     } finally {
       submitButton.disabled = false;
     }
@@ -124,5 +124,6 @@ function showFormMessage(text, type) {
   message.classList.add('form-message', type);
   message.textContent = text;
   contactForm.insertBefore(message, contactForm.firstChild);
-  setTimeout(() => message.remove(), 5000); // Auto-remove after 5s
+  setTimeout(() => message.style.opacity = '0', 5000); // Fade out after 5s
+  setTimeout(() => message.remove(), 5300); // Remove after fade
 }
