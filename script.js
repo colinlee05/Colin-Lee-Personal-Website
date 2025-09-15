@@ -113,11 +113,6 @@ if (contactForm) {
       showModal('Message was not delivered—probably because the captcha isn\'t complete. Please try again.', 'error', '⚠️');
     } finally {
       submitButton.disabled = false;
-      // Scroll to #contact smoothly after submit if not already visible
-      const contactRect = document.querySelector('#contact').getBoundingClientRect();
-      if (contactRect.top < 0 || contactRect.bottom > window.innerHeight) {
-        document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
-      }
     }
   });
 }
