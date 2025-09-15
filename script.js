@@ -86,19 +86,15 @@ backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// Form Submission with AJAX for better UX (success/error handling)
+// Form Submission with AJAX and Cute Modal Popups
 const contactForm = document.querySelector('#contact form');
 if (contactForm) {
   contactForm.addEventListener('submit', async (event) => {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault(); // Prevent default submission
 
     const formData = new FormData(contactForm);
     const submitButton = contactForm.querySelector('button[type="submit"]');
-    submitButton.disabled = true; // Disable button during submission
-
-    // Clear any previous messages
-    const existingMsg = contactForm.querySelector('.form-message');
-    if (existingMsg) existingMsg.remove();
+    submitButton.disabled = true; // Disable during submit
 
     try {
       const response = await fetch(contactForm.action, {
@@ -106,46 +102,53 @@ if (contactForm) {
         body: formData,
       });
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        showFormMessage('Error: ' + errorText, 'red'); // Show error inline
+      if (response.ok) {
+        showModal('Message successfully sent!', 'success', '👍');
+        contactForm.reset(); // Clear form
       } else {
-        showFormMessage('Message sent successfully! Thanks for reaching out—I\'ll reply soon.', 'green');
-        contactForm.reset(); // Clear form fields
+        const errorData = await response.json();
+        showModal(errorData.error || 'Message was not delivered—probably because the captcha isn\'t complete. Please try again.', 'error', '⚠️');
       }
     } catch (error) {
-      showFormMessage('Submission failed: ' + error.message, 'red');
+      showModal('Message was not delivered—probably because the captcha isn\'t complete. Please try again.', 'error', '⚠️');
     } finally {
-      submitButton.disabled = false; // Re-enable button
-      // Scroll to contact section (smoothly)
-      document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+      submitButton.disabled = false;
+      // Scroll to #contact smoothly after submit if not already visible
+      const contactRect = document.querySelector('#contact').getBoundingClientRect();
+      if (contactRect.top < 0 || contactRect.bottom > window.innerHeight) {
+        document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+      }
     }
   });
 }
 
-// Helper function to show success/error messages
-function showFormMessage(text, color) {
-  const contactContent = document.querySelector('#contact .content');
-  const message = document.createElement('p');
-  message.classList.add('form-message');
-  message.textContent = text;
-  message.style.color = color;
-  message.style.fontWeight = 'bold';
-  message.style.marginTop = '10px';
-  message.style.padding = '10px';
-  message.style.backgroundColor = color === 'green' ? '#d4edda' : '#f8d7da';
-  message.style.borderRadius = '4px';
-  contactContent.insertBefore(message, contactContent.querySelector('form'));
+// Function for Cute Modal Popup
+function showModal(message, type, emoji) {
+  const modal = document.getElementById('form-modal');
+  const overlay = document.getElementById('modal-overlay');
+  const modalMessage = document.getElementById('modal-message');
+  const closeBtn = document.getElementById('modal-close');
+
+  if (!modal || !overlay) return;
+
+  modalMessage.textContent = message;
+  modalMessage.setAttribute('data-emoji', emoji);
+  modal.classList.remove('success', 'error');
+  modal.classList.add(type);
+  modal.style.display = 'block';
+  overlay.style.display = 'block';
+
+  // Close on click
+  closeBtn.onclick = hideModal;
+  overlay.onclick = hideModal;
+
+  // Auto-close after 5 seconds
+  setTimeout(hideModal, 5000);
 }
 
-// Check for success/error in URL on load (fallback for direct access)
-window.onload = function() {
-  const params = new URLSearchParams(window.location.search);
-  if (params.has('success') && params.get('success') === 'true') {
-    showFormMessage('Message sent successfully! Thanks for reaching out—I\'ll reply soon.', 'green');
-  } else if (params.has('error')) {
-    showFormMessage('Error: ' + params.get('error'), 'red');
-  }
-  // Clear URL params
-  window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
-};
+function hideModal() {
+  const modal = document.getElementById('form-modal');
+  const overlay = document.getElementById('modal-overlay');
+  if (modal) modal.style.display = 'none';
+  if (overlay) overlay.style.display = 'none';
+}
