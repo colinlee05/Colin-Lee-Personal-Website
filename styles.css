@@ -312,27 +312,73 @@ button:hover {
     transform: scale(1.1);
 }
 
-/* Contact */
+/* Contact Form Styles (Clean, Minimal) */
+#contact form {
+    max-width: 600px;
+    margin: 0 auto 30px; /* Increased bottom margin for spacing */
+    text-align: left;
+}
+
+#contact label {
+    display: block;
+    margin-top: 15px; /* Increased spacing between fields */
+    font-weight: 600;
+}
+
+#contact input, #contact textarea {
+    width: 100%;
+    padding: 12px; /* Slightly larger padding for cleaner look */
+    margin-bottom: 20px; /* Increased spacing */
+    border: 1px solid var(--border-color);
+    border-radius: 8px; /* Softer corners */
+    background-color: var(--section-bg);
+    color: var(--text-color);
+    box-shadow: none; /* Remove boxy shadow */
+    transition: border-color 0.3s ease;
+}
+
+#contact input:focus, #contact textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+#contact button {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 8px; /* Softer corners */
+    box-shadow: none; /* Remove boxy shadow */
+}
+
+/* Clean up contact list (minimal, no boxes) */
 .contact-list {
     list-style: none;
+    padding: 0;
     text-align: center;
-    display: grid;
-    gap: 20px;
     max-width: 800px;
     margin: 0 auto;
 }
 
 .contact-list li {
-    background-color: var(--content-block-bg);
-    padding: 15px;
-    border-radius: 5px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
+    margin-bottom: 15px; /* Spacing between links */
+    background-color: transparent; /* No background */
+    border: none; /* No border */
+    box-shadow: none; /* No shadow */
+    padding: 0; /* No padding */
 }
 
-.contact-list li:hover {
-    transform: translateY(-5px);
+.contact-list li strong {
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.contact-list a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-list a:hover {
+    color: var(--link-hover);
 }
 
 /* Footer */
@@ -407,6 +453,28 @@ footer {
     transform: translateY(-5px);
 }
 
+/* Inline Form Message Styles (Cute with rounded corners) */
+.form-message {
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: opacity 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.form-message.success {
+    background-color: #d4edda;
+    color: green;
+}
+
+.form-message.error {
+    background-color: #f8d7da;
+    color: red;
+}
+
 /* Media Queries for Mobile */
 @media (max-width: 768px) {
     header {
@@ -478,26 +546,4 @@ footer {
     .footer-links li:hover {
         transform: none;
     }
-}
-
-/* Inline Form Message Styles (Cute with rounded corners) */
-.form-message {
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    font-weight: 600;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: opacity 0.3s ease;
-    font-size: 1.1rem;
-}
-
-.form-message.success {
-    background-color: #d4edda;
-    color: green;
-}
-
-.form-message.error {
-    background-color: #f8d7da;
-    color: red;
 }
