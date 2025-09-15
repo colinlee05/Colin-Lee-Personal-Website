@@ -312,28 +312,29 @@ button:hover {
     transform: scale(1.1);
 }
 
-/* Contact Form Styles (Clean, Minimal) */
+/* Contact Form Styles (Clean, Minimal Vibes) */
 #contact form {
     max-width: 600px;
-    margin: 0 auto 30px; /* Increased bottom margin for spacing */
+    margin: 0 auto 40px; /* Increased bottom margin for spacing */
     text-align: left;
 }
 
 #contact label {
     display: block;
-    margin-top: 15px; /* Increased spacing between fields */
-    font-weight: 600;
+    margin-top: 20px; /* Increased spacing between fields */
+    font-weight: 500; /* Lighter weight for minimal vibe */
+    color: var(--text-color);
 }
 
 #contact input, #contact textarea {
     width: 100%;
-    padding: 12px; /* Slightly larger padding for cleaner look */
-    margin-bottom: 20px; /* Increased spacing */
+    padding: 12px;
+    margin-bottom: 25px; /* Increased spacing */
     border: 1px solid var(--border-color);
     border-radius: 8px; /* Softer corners */
     background-color: var(--section-bg);
     color: var(--text-color);
-    box-shadow: none; /* Remove boxy shadow */
+    box-shadow: none; /* No shadows for clean look */
     transition: border-color 0.3s ease;
 }
 
@@ -345,30 +346,36 @@ button:hover {
 #contact button {
     width: 100%;
     margin-top: 10px;
-    border-radius: 8px; /* Softer corners */
-    box-shadow: none; /* Remove boxy shadow */
+    border-radius: 8px;
+    box-shadow: none;
+    font-size: 1.1rem; /* Slightly larger for better touch */
 }
 
-/* Clean up contact list (minimal, no boxes) */
+.cf-turnstile {
+    margin-bottom: 25px; /* Increased spacing */
+}
+
+/* Clean Email Links (No Boxes, Simple List) */
 .contact-list {
     list-style: none;
     padding: 0;
     text-align: center;
-    max-width: 800px;
+    max-width: 600px;
     margin: 0 auto;
 }
 
 .contact-list li {
-    margin-bottom: 15px; /* Spacing between links */
-    background-color: transparent; /* No background */
-    border: none; /* No border */
-    box-shadow: none; /* No shadow */
-    padding: 0; /* No padding */
+    margin-bottom: 20px; /* Increased spacing */
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
 }
 
 .contact-list li strong {
-    font-weight: 600;
+    font-weight: 500; /* Lighter for minimal vibe */
     margin-right: 10px;
+    color: var(--text-color);
 }
 
 .contact-list a {
@@ -379,6 +386,28 @@ button:hover {
 
 .contact-list a:hover {
     color: var(--link-hover);
+}
+
+/* Inline Form Message Styles (Cute with rounded corners) */
+.form-message {
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: opacity 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.form-message.success {
+    background-color: #d4edda;
+    color: green;
+}
+
+.form-message.error {
+    background-color: #f8d7da;
+    color: red;
 }
 
 /* Footer */
@@ -451,28 +480,6 @@ footer {
 
 #back-to-top:hover {
     transform: translateY(-5px);
-}
-
-/* Inline Form Message Styles (Cute with rounded corners) */
-.form-message {
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    font-weight: 600;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: opacity 0.3s ease;
-    font-size: 1.1rem;
-}
-
-.form-message.success {
-    background-color: #d4edda;
-    color: green;
-}
-
-.form-message.error {
-    background-color: #f8d7da;
-    color: red;
 }
 
 /* Media Queries for Mobile */
