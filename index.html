@@ -7,6 +7,8 @@
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <!-- Cloudflare Turnstile Script -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
     <header id="header">
@@ -171,6 +173,27 @@
             <div class="content">
                 <h2>Contact Me</h2>
                 <p>I’d love to connect—whether about projects, cybersecurity, or LSU. Reach out anytime!</p>
+                
+                <!-- Protected Contact Form with Turnstile (Managed Mode) -->
+                <form action="https://contact-form-handler.colin-lee.workers.dev/" method="POST">
+                    <label for="name">Name (optional):</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name">
+                    
+                    <label for="email">Email (required):</label>
+                    <input type="email" id="email" name="_replyto" required placeholder="your@email.com">
+                    
+                    <label for="subject">Subject (optional):</label>
+                    <input type="text" id="subject" name="subject" placeholder="e.g., Cyber Risk Collaboration">
+                    
+                    <label for="message">Message (required):</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Tell me more..."></textarea>
+                    
+                    <!-- Turnstile Widget (Managed Mode) -->
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAAB1PvBKaMsHMUxVJ" data-action="managed"></div>
+                    
+                    <button type="submit">Send Message</button>
+                </form>
+                
                 <ul class="contact-list">
                     <li><strong>Email:</strong> <a href="mailto:colinfrancislee@gmail.com">colinfrancislee@gmail.com</a></li>
                     <li><strong>LSU Email:</strong> <a href="mailto:clee149@lsu.edu">clee149@lsu.edu</a></li>
@@ -202,13 +225,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
