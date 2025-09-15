@@ -106,14 +106,23 @@ if (contactForm) {
         body: formData,
       });
 
+      console.log('Response status:', response.status); // Debug: Check in console (F12)
+
       if (response.ok) {
-        showFormMessage('Message successfully sent! 👍', 'success');
-        contactForm.reset();
+        const data = await response.json();
+        console.log('Response data:', data); // Debug: See what Worker returns
+        if (data.success || response.status === 200) { // Fallback to status 200 for success
+          showFormMessage('Message successfully sent! 👍', 'success');
+          contactForm.reset();
+        } else {
+          showFormMessage(data.error || 'Message not delivered - probably the captcha failed. Please try again. ⚠️', 'error');
+        }
       } else {
         const data = await response.json();
         showFormMessage(data.error || 'Message not delivered - probably the captcha failed. Please try again. ⚠️', 'error');
       }
     } catch (error) {
+      console.error('Fetch error:', error); // Debug: See network issues
       showFormMessage('Message not delivered - probably the captcha failed. Please try again. ⚠️', 'error');
     } finally {
       submitButton.disabled = false;
