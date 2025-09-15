@@ -86,26 +86,66 @@ backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// Success message after form submission (wrapped in onload for reliability)
-window.onload = function() {
-  if (window.location.search.includes('success=true')) {
-    const contactSection = document.querySelector('#contact .content');
-    if (contactSection) {
-      const successMsg = document.createElement('p');
-      successMsg.textContent = 'Message sent successfully! Thanks for reaching out—I\'ll reply soon.';
-      successMsg.style.color = 'green';
-      successMsg.style.fontWeight = 'bold';
-      successMsg.style.marginTop = '10px';
-      successMsg.style.padding = '10px';
-      successMsg.style.backgroundColor = '#d4edda';
-      successMsg.style.borderRadius = '4px';
-      contactSection.insertBefore(successMsg, contactSection.querySelector('form'));
-      
-      // Clear URL param for clean refresh
-      window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
-      
-      // Force scroll to #contact
+// Form Submission with AJAX for better UX (success/error handling)
+const contactForm = document.querySelector('#contact form');
+if (contactForm) {
+  contactForm.addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent default form submission
+
+    const formData = new FormData(contactForm);
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    submitButton.disabled = true; // Disable button during submission
+
+    // Clear any previous messages
+    const existingMsg = contactForm.querySelector('.form-message');
+    if (existingMsg) existingMsg.remove();
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        showFormMessage('Error: ' + errorText, 'red'); // Show error inline
+      } else {
+        showFormMessage('Message sent successfully! Thanks for reaching out—I\'ll reply soon.', 'green');
+        contactForm.reset(); // Clear form fields
+      }
+    } catch (error) {
+      showFormMessage('Submission failed: ' + error.message, 'red');
+    } finally {
+      submitButton.disabled = false; // Re-enable button
+      // Scroll to contact section (smoothly)
       document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
     }
+  });
+}
+
+// Helper function to show success/error messages
+function showFormMessage(text, color) {
+  const contactContent = document.querySelector('#contact .content');
+  const message = document.createElement('p');
+  message.classList.add('form-message');
+  message.textContent = text;
+  message.style.color = color;
+  message.style.fontWeight = 'bold';
+  message.style.marginTop = '10px';
+  message.style.padding = '10px';
+  message.style.backgroundColor = color === 'green' ? '#d4edda' : '#f8d7da';
+  message.style.borderRadius = '4px';
+  contactContent.insertBefore(message, contactContent.querySelector('form'));
+}
+
+// Check for success/error in URL on load (fallback for direct access)
+window.onload = function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('success') && params.get('success') === 'true') {
+    showFormMessage('Message sent successfully! Thanks for reaching out—I\'ll reply soon.', 'green');
+  } else if (params.has('error')) {
+    showFormMessage('Error: ' + params.get('error'), 'red');
   }
+  // Clear URL params
+  window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
 };
