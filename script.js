@@ -8,18 +8,22 @@ hamburger.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
 
-// Dark Mode Toggle (Fixed for PC/Mobile)
+// Dark Mode Toggle
 const darkModeToggle = document.getElementById('dark-mode-toggle');
 darkModeToggle.addEventListener('click', () => {
-  const currentTheme = document.body.getAttribute('data-theme') || 'light';
-  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-  document.body.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
+  document.body.classList.toggle('dark-mode');
+  // Optional: Save preference to localStorage
+  if (document.body.classList.contains('dark-mode')) {
+    localStorage.setItem('theme', 'dark');
+  } else {
+    localStorage.setItem('theme', 'light');
+  }
 });
 
 // Load saved theme
-const savedTheme = localStorage.getItem('theme') || 'light';
-document.body.setAttribute('data-theme', savedTheme);
+if (localStorage.getItem('theme') === 'dark') {
+  document.body.classList.add('dark-mode');
+}
 
 // Fun Fact Button
 const funFactBtn = document.getElementById('fun-fact-btn');
@@ -38,9 +42,9 @@ function assessPasswordStrength(password) {
   let strength = 0;
   if (password.length >= 8) strength++;
   if (password.match(/[a-z]/)) strength++;
-  if (password.match/[A-Z]/) strength++;
-  if (password.match/[0-9]/) strength++;
-  if (password.match/[^a-zA-Z0-9]/) strength++;
+  if (password.match(/[A-Z]/)) strength++;
+  if (password.match(/[0-9]/)) strength++;
+  if (password.match(/[^a-zA-Z0-9]/)) strength++;
 
   switch (strength) {
     case 0:
@@ -82,11 +86,11 @@ backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// Form Submission with AJAX (Fixed to stay on page and show inline message)
+// Form Submission with AJAX to stay on page
 const contactForm = document.querySelector('#contact form');
 if (contactForm) {
   contactForm.addEventListener('submit', async (event) => {
-    event.preventDefault(); // Stop navigation to Worker URL
+    event.preventDefault(); // Prevent default navigation
 
     const formData = new FormData(contactForm);
     const submitButton = contactForm.querySelector('button[type="submit"]');
@@ -106,12 +110,11 @@ if (contactForm) {
 
       if (response.ok && data.success) {
         showFormMessage('Message successfully sent! 👍', 'success');
-        contactForm.reset();
       } else {
         showFormMessage(data.error || 'Message not delivered - probably the captcha failed. Please try again. ⚠️', 'error');
       }
     } catch (error) {
-        showFormMessage('Message not delivered - probably the captcha failed. Please try again. ⚠️', 'error');
+      showFormMessage('Message not delivered - probably the captcha failed. Please try again. ⚠️', 'error');
     } finally {
       submitButton.disabled = false;
     }
