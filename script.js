@@ -106,11 +106,11 @@ if (contactForm) {
         body: formData,
       });
 
-      const data = await response.json();
-
-      if (data.success) {
+      if (response.ok) {
         showFormMessage('Message successfully sent! 👍', 'success');
+        contactForm.reset();
       } else {
+        const data = await response.json();
         showFormMessage(data.error || 'Message not delivered - probably the captcha failed. Please try again. ⚠️', 'error');
       }
     } catch (error) {
