@@ -86,19 +86,26 @@ backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// Success message after form submission
-if (window.location.search.includes('success=true')) {
-  const contactSection = document.querySelector('#contact .content');
-  const successMsg = document.createElement('p');
-  successMsg.textContent = 'Message sent successfully! Thanks for reaching out—I\'ll reply soon.';
-  successMsg.style.color = 'green';
-  successMsg.style.fontWeight = 'bold';
-  successMsg.style.marginTop = '10px';
-  successMsg.style.padding = '10px';
-  successMsg.style.backgroundColor = '#d4edda';
-  successMsg.style.borderRadius = '4px';
-  contactSection.insertBefore(successMsg, contactSection.querySelector('form'));
-  
-  // Clear URL param for clean refresh
-  window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
-}
+// Success message after form submission (wrapped in onload for reliability)
+window.onload = function() {
+  if (window.location.search.includes('success=true')) {
+    const contactSection = document.querySelector('#contact .content');
+    if (contactSection) {
+      const successMsg = document.createElement('p');
+      successMsg.textContent = 'Message sent successfully! Thanks for reaching out—I\'ll reply soon.';
+      successMsg.style.color = 'green';
+      successMsg.style.fontWeight = 'bold';
+      successMsg.style.marginTop = '10px';
+      successMsg.style.padding = '10px';
+      successMsg.style.backgroundColor = '#d4edda';
+      successMsg.style.borderRadius = '4px';
+      contactSection.insertBefore(successMsg, contactSection.querySelector('form'));
+      
+      // Clear URL param for clean refresh
+      window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
+      
+      // Force scroll to #contact
+      document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+};
