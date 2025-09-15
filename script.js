@@ -139,3 +139,21 @@ function showFormMessage(text, type) {
   setTimeout(() => message.style.opacity = '0', 5000); // Fade out after 5s
   setTimeout(() => message.remove(), 5300); // Remove after fade
 }
+
+// Mobile Header Scroll Hide
+let lastScrollTop = 0;
+const header = document.querySelector('header');
+
+window.addEventListener('scroll', () => {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+  if (scrollTop > lastScrollTop) {
+    // Scrolling down - hide header
+    header.classList.add('hidden');
+  } else {
+    // Scrolling up - show header
+    header.classList.remove('hidden');
+  }
+  
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For mobile Safari bounce
+}, { passive: true }); // Improves performance
