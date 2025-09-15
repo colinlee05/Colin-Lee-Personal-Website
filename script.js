@@ -1,70 +1,104 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Dark Mode Toggle with LocalStorage
-    const toggleButton = document.getElementById('dark-mode-toggle');
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    if (currentTheme === 'dark') {
-        document.body.setAttribute('data-theme', 'dark');
-        toggleButton.textContent = 'Toggle Light Mode';
-    }
-    toggleButton.addEventListener('click', () => {
-        const isDark = document.body.getAttribute('data-theme') === 'dark';
-        document.body.setAttribute('data-theme', isDark ? '' : 'dark');
-        toggleButton.textContent = isDark ? 'Toggle Dark Mode' : 'Toggle Light Mode';
-        localStorage.setItem('theme', isDark ? 'light' : 'dark');
-    });
+// Hamburger Menu Toggle
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
 
-    // Fun Fact Toggle
-    document.getElementById('fun-fact-btn').addEventListener('click', (e) => {
-        const funFact = document.getElementById('fun-fact');
-        funFact.classList.toggle('hidden');
-        e.target.textContent = funFact.classList.contains('hidden') ? 'Fun Fact' : 'Hide Fun Fact';
-    });
-
-    // Password Strength Analyzer (Real-time)
-    const passwordInput = document.getElementById('password-input');
-    const strengthBar = document.getElementById('strength-bar');
-    const strengthText = document.getElementById('strength-text');
-    passwordInput.addEventListener('input', () => {
-        const password = passwordInput.value;
-        let strength = 0;
-        if (password.length > 0) strength += 25;
-        if (password.length >= 6) strength += 25;
-        if (password.length >= 10) strength += 25;
-        if (/[!@#$%^&*]/.test(password)) strength += 25;
-
-        strengthBar.style.width = `${strength}%`;
-        let color = '#ff4d4d'; // Weak
-        let text = 'Weak';
-        if (strength > 25) { color = '#ffcc00'; text = 'Fair'; }
-        if (strength > 50) { color = '#66cc00'; text = 'Good'; }
-        if (strength > 75) { color = '#00cc00'; text = 'Strong'; }
-        strengthBar.style.backgroundColor = color;
-        strengthText.textContent = text;
-    });
-
-    // Header Scroll Behavior
-    let lastScrollTop = 0;
-    const header = document.querySelector('header');
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        header.classList.toggle('hidden', scrollTop > lastScrollTop && scrollTop > header.offsetHeight);
-        lastScrollTop = Math.max(scrollTop, 0);
-    });
-
-    // Hamburger Menu
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        hamburger.setAttribute('aria-expanded', navLinks.classList.contains('active'));
-    });
-
-    // Back to Top Button
-    const backToTop = document.getElementById('back-to-top');
-    window.addEventListener('scroll', () => {
-        backToTop.classList.toggle('visible', window.pageYOffset > 100);
-    });
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+hamburger.addEventListener('click', () => {
+  const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+  hamburger.setAttribute('aria-expanded', !expanded);
+  navLinks.classList.toggle('active');
 });
+
+// Dark Mode Toggle
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+darkModeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  // Optional: Save preference to localStorage
+  if (document.body.classList.contains('dark-mode')) {
+    localStorage.setItem('theme', 'dark');
+  } else {
+    localStorage.setItem('theme', 'light');
+  }
+});
+
+// Load saved theme
+if (localStorage.getItem('theme') === 'dark') {
+  document.body.classList.add('dark-mode');
+}
+
+// Fun Fact Button
+const funFactBtn = document.getElementById('fun-fact-btn');
+const funFact = document.getElementById('fun-fact');
+
+funFactBtn.addEventListener('click', () => {
+  funFact.classList.toggle('hidden');
+});
+
+// Password Strength Analyzer
+const passwordInput = document.getElementById('password-input');
+const strengthBar = document.getElementById('strength-bar');
+const strengthText = document.getElementById('strength-text');
+
+function assessPasswordStrength(password) {
+  let strength = 0;
+  if (password.length >= 8) strength++;
+  if (password.match(/[a-z]/)) strength++;
+  if (password.match(/[A-Z]/)) strength++;
+  if (password.match(/[0-9]/)) strength++;
+  if (password.match(/[^a-zA-Z0-9]/)) strength++;
+
+  switch (strength) {
+    case 0:
+    case 1:
+      return { level: 'Weak', color: 'red' };
+    case 2:
+    case 3:
+      return { level: 'Medium', color: 'orange' };
+    case 4:
+    case 5:
+      return { level: 'Strong', color: 'green' };
+    default:
+      return { level: 'Weak', color: 'red' };
+  }
+}
+
+passwordInput.addEventListener('input', () => {
+  const password = passwordInput.value;
+  const { level, color } = assessPasswordStrength(password);
+  
+  strengthBar.style.width = `${(level === 'Weak' ? 33 : level === 'Medium' ? 66 : 100)}%`;
+  strengthBar.style.backgroundColor = color;
+  strengthText.textContent = `Strength: ${level}`;
+  strengthText.style.color = color;
+});
+
+// Back to Top Button
+const backToTop = document.getElementById('back-to-top');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    backToTop.style.display = 'block';
+  } else {
+    backToTop.style.display = 'none';
+  }
+});
+
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Success message after form submission
+if (window.location.search.includes('success=true')) {
+  const contactSection = document.querySelector('#contact .content');
+  const successMsg = document.createElement('p');
+  successMsg.textContent = 'Message sent successfully! Thanks for reaching out—I\'ll reply soon.';
+  successMsg.style.color = 'green';
+  successMsg.style.fontWeight = 'bold';
+  successMsg.style.marginTop = '10px';
+  successMsg.style.padding = '10px';
+  successMsg.style.backgroundColor = '#d4edda';
+  successMsg.style.borderRadius = '4px';
+  contactSection.insertBefore(successMsg, contactSection.querySelector('form'));
+  
+  // Clear URL param for clean refresh
+  window.history.replaceState({}, document.title, window.location.pathname + window.location.hash);
+}
