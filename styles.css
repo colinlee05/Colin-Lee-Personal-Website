@@ -236,6 +236,7 @@ button:hover {
 #fun-fact:not(.hidden) {
     display: block;
     opacity: 1;
+    margin-top: 20px;
 }
 
 /* Consistent Content Blocks (Grey Boxes with Hover and Border) */
@@ -245,7 +246,7 @@ button:hover {
     border-radius: 5px;
     border: 1px solid var(--border-color);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    margin: 0 auto 20px;
+    margin: 0 auto 10px;
     max-width: 800px;
     text-align: center; /* Center text in boxes */
     transition: transform 0.3s ease;
