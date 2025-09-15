@@ -8,21 +8,18 @@ hamburger.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
 
-// Dark Mode Toggle
+// Dark Mode Toggle (Fixed for PC/Mobile)
 const darkModeToggle = document.getElementById('dark-mode-toggle');
 darkModeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  if (document.body.classList.contains('dark-mode')) {
-    localStorage.setItem('theme', 'dark');
-  } else {
-    localStorage.setItem('theme', 'light');
-  }
+  const currentTheme = document.body.getAttribute('data-theme');
+  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+  document.body.setAttribute('data-theme', newTheme);
+  localStorage.setItem('theme', newTheme);
 });
 
 // Load saved theme
-if (localStorage.getItem('theme') === 'dark') {
-  document.body.classList.add('dark-mode');
-}
+const savedTheme = localStorage.getItem('theme') || 'light';
+document.body.setAttribute('data-theme', savedTheme);
 
 // Fun Fact Button
 const funFactBtn = document.getElementById('fun-fact-btn');
@@ -85,7 +82,7 @@ backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// Form Submission with AJAX to stay on page
+// Form Submission with AJAX (Fixed to stay on page and show inline message)
 const contactForm = document.querySelector('#contact form');
 if (contactForm) {
   contactForm.addEventListener('submit', async (event) => {
@@ -93,7 +90,11 @@ if (contactForm) {
 
     const formData = new FormData(contactForm);
     const submitButton = contactForm.querySelector('button[type="submit"]');
-    submitButton.disabled = true; // Disable during submit
+    submitButton.disabled = true;
+
+    // Clear previous message
+    const existingMsg = contactForm.querySelector('.form-message');
+    if (existingMsg) existingMsg.remove();
 
     try {
       const response = await fetch(contactForm.action, {
@@ -104,15 +105,24 @@ if (contactForm) {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        alert('Message successfully sent!'); // Simple success popup - replace with cute modal if needed
-        contactForm.reset(); // Clear form
+        showFormMessage('Message successfully sent! 👍', 'success');
+        contactForm.reset();
       } else {
-        alert(data.error || 'Message not delivered - probably the captcha failed. Please try again.'); // Failure popup
+        showFormMessage(data.error || 'Message not delivered - probably the captcha failed. Please try again. ⚠️', 'error');
       }
     } catch (error) {
-      alert('Message not delivered - probably the captcha failed. Please try again.'); // Catch network errors
+      showFormMessage('Message not delivered - probably the captcha failed. Please try again. ⚠️', 'error');
     } finally {
       submitButton.disabled = false;
     }
   });
+}
+
+// Helper to show inline message above the form
+function showFormMessage(text, type) {
+  const message = document.createElement('div');
+  message.classList.add('form-message', type);
+  message.textContent = text;
+  contactForm.insertBefore(message, contactForm.firstChild);
+  setTimeout(() => message.remove(), 5000); // Auto-remove after 5s
 }
