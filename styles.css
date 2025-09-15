@@ -352,7 +352,9 @@ button:hover {
 }
 
 .cf-turnstile {
-    margin-bottom: 25px; /* Increased spacing */
+    margin: 0 auto 25px; /* Centered and increased spacing */
+    text-align: center; /* Center the widget */
+    display: block; /* Ensure centering works */
 }
 
 /* Clean Email Links (No Boxes, Simple List) */
