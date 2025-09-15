@@ -12,7 +12,6 @@ hamburger.addEventListener('click', () => {
 const darkModeToggle = document.getElementById('dark-mode-toggle');
 darkModeToggle.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
-  // Optional: Save preference to localStorage
   if (document.body.classList.contains('dark-mode')) {
     localStorage.setItem('theme', 'dark');
   } else {
@@ -86,11 +85,11 @@ backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// Form Submission with AJAX and Cute Modal Popups
+// Form Submission with AJAX to stay on page
 const contactForm = document.querySelector('#contact form');
 if (contactForm) {
   contactForm.addEventListener('submit', async (event) => {
-    event.preventDefault(); // Prevent default submission
+    event.preventDefault(); // Stop navigation to Worker URL
 
     const formData = new FormData(contactForm);
     const submitButton = contactForm.querySelector('button[type="submit"]');
@@ -102,48 +101,18 @@ if (contactForm) {
         body: formData,
       });
 
-      if (response.ok) {
-        showModal('Message successfully sent!', 'success', '👍');
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        alert('Message successfully sent!'); // Simple success popup - replace with cute modal if needed
         contactForm.reset(); // Clear form
       } else {
-        const errorData = await response.json();
-        showModal(errorData.error || 'Message was not delivered—probably because the captcha isn\'t complete. Please try again.', 'error', '⚠️');
+        alert(data.error || 'Message not delivered - probably the captcha failed. Please try again.'); // Failure popup
       }
     } catch (error) {
-      showModal('Message was not delivered—probably because the captcha isn\'t complete. Please try again.', 'error', '⚠️');
+      alert('Message not delivered - probably the captcha failed. Please try again.'); // Catch network errors
     } finally {
       submitButton.disabled = false;
     }
   });
-}
-
-// Function for Cute Modal Popup
-function showModal(message, type, emoji) {
-  const modal = document.getElementById('form-modal');
-  const overlay = document.getElementById('modal-overlay');
-  const modalMessage = document.getElementById('modal-message');
-  const closeBtn = document.getElementById('modal-close');
-
-  if (!modal || !overlay) return;
-
-  modalMessage.textContent = message;
-  modalMessage.setAttribute('data-emoji', emoji);
-  modal.classList.remove('success', 'error');
-  modal.classList.add(type);
-  modal.style.display = 'block';
-  overlay.style.display = 'block';
-
-  // Close on click
-  closeBtn.onclick = hideModal;
-  overlay.onclick = hideModal;
-
-  // Auto-close after 5 seconds
-  setTimeout(hideModal, 5000);
-}
-
-function hideModal() {
-  const modal = document.getElementById('form-modal');
-  const overlay = document.getElementById('modal-overlay');
-  if (modal) modal.style.display = 'none';
-  if (overlay) overlay.style.display = 'none';
 }
