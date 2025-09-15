@@ -14,7 +14,7 @@
     --content-block-bg: #f8f9fa; /* Slight grey for boxes */
 }
 
-[data-theme="dark"] {
+body[data-theme="dark"] {
     --primary-color: #461D7C;
     --accent-color: #FDD023;
     --bg-color: #121212;
@@ -478,4 +478,26 @@ footer {
     .footer-links li:hover {
         transform: none;
     }
+}
+
+/* Inline Form Message Styles (Cute with rounded corners) */
+.form-message {
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: opacity 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.form-message.success {
+    background-color: #d4edda;
+    color: green;
+}
+
+.form-message.error {
+    background-color: #f8d7da;
+    color: red;
 }
