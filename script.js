@@ -106,11 +106,15 @@ if (contactForm) {
         body: formData,
       });
 
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        showFormMessage('Message successfully sent! 👍', 'success');
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success) {
+          showFormMessage('Message successfully sent! 👍', 'success');
+        } else {
+          showFormMessage(data.error || 'Message not delivered - probably the captcha failed. Please try again. ⚠️', 'error');
+        }
       } else {
+        const data = await response.json();
         showFormMessage(data.error || 'Message not delivered - probably the captcha failed. Please try again. ⚠️', 'error');
       }
     } catch (error) {
