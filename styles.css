@@ -239,6 +239,10 @@ button:hover {
     margin-top: 20px;
 }
 
+#fun-fact {
+    text-align: center;
+}
+
 /* Consistent Content Blocks (Grey Boxes with Hover and Border) */
 .content-block {
     background-color: var(--content-block-bg);
