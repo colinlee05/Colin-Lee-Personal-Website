@@ -50,6 +50,23 @@
             50% { opacity: 1; }
             100% { opacity: 0; }
         }
+        /* Funny flying element styles */
+        .flying-thing {
+            position: absolute;
+            font-size: 2em; /* Adjust size as needed */
+            white-space: nowrap; /* Prevent wrapping */
+            animation: fly-across 5s linear forwards; /* Base animation */
+            z-index: 0; /* Above particles but below text if needed */
+            pointer-events: none;
+        }
+        @keyframes fly-across {
+            0% {
+                transform: translateX(-100vw) rotate(0deg); /* Start off left */
+            }
+            100% {
+                transform: translateX(100vw) rotate(360deg); /* End off right, with a spin for fun */
+            }
+        }
     </style>
 </head>
 <body>
@@ -71,6 +88,46 @@
                 particle.style.animationDuration = `${3 + Math.random() * 4}s`; // Vary duration for variety
                 particleContainer.appendChild(particle);
             }
+
+            // Funny flying things: Randomly spawn one every 10-30 seconds
+            function spawnFlyingThing() {
+                const things = ['🚀', '🛸', '⌨️', '💾', '📀', '⚙️']; // Funny options: rocket, UFO, cow, banana, unicorn
+                const randomThing = things[Math.floor(Math.random() * things.length)];
+                
+                const flyer = document.createElement('div');
+                flyer.className = 'flying-thing';
+                flyer.textContent = randomThing;
+                
+                // Random vertical position
+                flyer.style.top = `${Math.random() * 80 + 10}vh`; // Between 10-90% height
+                
+                // Random speed: 3-8 seconds
+                const duration = 3 + Math.random() * 5;
+                flyer.style.animationDuration = `${duration}s`;
+                
+                // Random direction: left-to-right or right-to-left
+                if (Math.random() > 0.5) {
+                    flyer.style.animationDirection = 'reverse';
+                    flyer.style.transform = 'scaleX(-1)'; // Flip for reverse direction if needed
+                }
+                
+                particleContainer.appendChild(flyer); // Append to container for z-index consistency
+                
+                // Remove after animation completes
+                setTimeout(() => {
+                    flyer.remove();
+                }, duration * 1000);
+            }
+
+            // Spawn at random intervals (every 10-30 seconds)
+            function scheduleSpawn() {
+                spawnFlyingThing();
+                const nextDelay = (10 + Math.random() * 20) * 1000;
+                setTimeout(scheduleSpawn, nextDelay);
+            }
+
+            // Start the first one after a short delay
+            setTimeout(scheduleSpawn, 5000);
         });
     </script>
 </body>
