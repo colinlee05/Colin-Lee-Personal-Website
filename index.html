@@ -55,17 +55,9 @@
             position: absolute;
             font-size: 2em; /* Adjust size as needed */
             white-space: nowrap; /* Prevent wrapping */
-            animation: fly-across 5s linear forwards; /* Base animation */
             z-index: 0; /* Above particles but below text if needed */
             pointer-events: none;
-        }
-        @keyframes fly-across {
-            0% {
-                transform: translateX(-100vw) rotate(0deg); /* Start off left */
-            }
-            100% {
-                transform: translateX(100vw) rotate(360deg); /* End off right, with a spin for fun */
-            }
+            will-change: transform; /* For smoother animation */
         }
     </style>
 </head>
@@ -89,41 +81,127 @@
                 particleContainer.appendChild(particle);
             }
 
-            // Funny flying things: Randomly spawn one every 10-30 seconds
+            // Physics constants
+            const gravity = 0.1; // Pixels per frame gravity
+            const elasticity = 0.8; // Bounce factor (0-1)
+            const friction = 0.98; // Slow down on ground
+            const minVelocity = 0.1; // Threshold to stop
+            const flyers = []; // Array to hold all flying things
+
+            // Funny flying things: Spawn one every 10 seconds
             function spawnFlyingThing() {
-                const things = ['🚀', '🛸', '⌨️', '💾', '📀', '⚙️']; // Funny options: rocket, UFO, cow, banana, unicorn
+                const things = ['🚀', '🛸', '⌨️', '💾', '📀', '⚙️'];
                 const randomThing = things[Math.floor(Math.random() * things.length)];
                 
                 const flyer = document.createElement('div');
                 flyer.className = 'flying-thing';
                 flyer.textContent = randomThing;
-                
-                // Random vertical position
-                flyer.style.top = `${Math.random() * 80 + 10}vh`; // Between 10-90% height
-                
-                // Random speed: 3-8 seconds
-                const duration = 3 + Math.random() * 5;
-                flyer.style.animationDuration = `${duration}s`;
-                
-                // Random direction: left-to-right or right-to-left
-                if (Math.random() > 0.5) {
-                    flyer.style.animationDirection = 'reverse';
-                    flyer.style.transform = 'scaleX(-1)'; // Flip for reverse direction if needed
+                particleContainer.appendChild(flyer);
+
+                const rect = flyer.getBoundingClientRect();
+                const size = { width: rect.width, height: rect.height };
+
+                // Random entry from any side
+                const side = Math.floor(Math.random() * 4); // 0: left, 1: right, 2: top, 3: bottom
+                let x, y, vx, vy;
+                const speed = 2 + Math.random() * 3; // Initial speed
+
+                switch (side) {
+                    case 0: // Left
+                        x = -size.width;
+                        y = Math.random() * window.innerHeight;
+                        vx = speed;
+                        vy = (Math.random() - 0.5) * 2;
+                        break;
+                    case 1: // Right
+                        x = window.innerWidth;
+                        y = Math.random() * window.innerHeight;
+                        vx = -speed;
+                        vy = (Math.random() - 0.5) * 2;
+                        break;
+                    case 2: // Top
+                        x = Math.random() * window.innerWidth;
+                        y = -size.height;
+                        vx = (Math.random() - 0.5) * 2;
+                        vy = speed;
+                        break;
+                    case 3: // Bottom
+                        x = Math.random() * window.innerWidth;
+                        y = window.innerHeight;
+                        vx = (Math.random() - 0.5) * 2;
+                        vy = -speed;
+                        break;
                 }
-                
-                particleContainer.appendChild(flyer); // Append to container for z-index consistency
-                
-                // Remove after animation completes
-                setTimeout(() => {
-                    flyer.remove();
-                }, duration * 1000);
+
+                // Random rotation for fun
+                const rotation = (Math.random() - 0.5) * 360;
+                flyer.style.transform = `translate(${x}px, ${y}px) rotate(${rotation}deg)`;
+
+                // Store physics properties
+                flyer.physics = { x, y, vx, vy, settled: false, size };
+
+                flyers.push(flyer);
             }
 
-            // Spawn at random intervals (every 10-30 seconds)
+            // Animation loop
+            function animate() {
+                const width = window.innerWidth;
+                const height = window.innerHeight;
+
+                flyers.forEach(flyer => {
+                    if (flyer.physics.settled) return;
+
+                    let { x, y, vx, vy, size } = flyer.physics;
+
+                    // Apply gravity
+                    vy += gravity;
+
+                    // Update position
+                    x += vx;
+                    y += vy;
+
+                    // Bounce off walls
+                    if (x < 0) {
+                        x = 0;
+                        vx = -vx * elasticity;
+                    } else if (x > width - size.width) {
+                        x = width - size.width;
+                        vx = -vx * elasticity;
+                    }
+                    if (y < 0) {
+                        y = 0;
+                        vy = -vy * elasticity;
+                    } else if (y > height - size.height) {
+                        y = height - size.height;
+                        vy = -vy * elasticity;
+                        vx *= friction; // Apply friction on ground
+
+                        // Check if settled
+                        if (Math.abs(vy) < minVelocity && Math.abs(vx) < minVelocity) {
+                            flyer.physics.settled = true;
+                            vy = 0;
+                            vx = 0;
+                        }
+                    }
+
+                    // Update physics
+                    flyer.physics = { x, y, vx, vy, size, settled: flyer.physics.settled };
+
+                    // Apply transform (with continuous rotation if desired, but keeping initial for simplicity)
+                    const rotation = parseFloat(flyer.style.transform.match(/rotate\((-?\d+\.?\d*)deg\)/)?.[1] || 0);
+                    flyer.style.transform = `translate(${x}px, ${y}px) rotate(${rotation + vx}deg)`; // Slight rotate based on vx for fun
+                });
+
+                requestAnimationFrame(animate);
+            }
+
+            // Start animation loop
+            animate();
+
+            // Spawn every 10 seconds
             function scheduleSpawn() {
                 spawnFlyingThing();
-                const nextDelay = (10 + Math.random() * 20) * 1000;
-                setTimeout(scheduleSpawn, nextDelay);
+                setTimeout(scheduleSpawn, 10000);
             }
 
             // Start the first one after a short delay
