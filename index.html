@@ -90,7 +90,11 @@
 
             // Funny flying things: Spawn one every 10 seconds
             function spawnFlyingThing() {
-                const things = ['🚀', '🛸', '⌨️', '💾', '📀', '⚙️'];
+                const things = [
+                    '🚀', '🛸', '⌨️', '💾', '📀', '⚙️', '💻', '🖥️', '🖱️', '📱', '🔌', '🔋', '📡', '🤖',
+                    '📊', '📈', '📉', '🗃️', '🖨️', '🕹️', '🎮', '🔒', '🔑', '📧', '🌐', '🖥️', '📲', '💿',
+                    '🗄️', '📁', '📂', '🔍', '📝', '📚', '🧮', '🔢', '📟', '🖲️', '🕸️', '🔗', '🛡️', '🗡️'
+                ]; // Expanded with more tech/CS/IS/analytics-related emojis
                 const randomThing = things[Math.floor(Math.random() * things.length)];
                 
                 const flyer = document.createElement('div');
@@ -101,37 +105,11 @@
                 const rect = flyer.getBoundingClientRect();
                 const size = { width: rect.width, height: rect.height };
 
-                // Random entry from any side
-                const side = Math.floor(Math.random() * 4); // 0: left, 1: right, 2: top, 3: bottom
-                let x, y, vx, vy;
-                const speed = 2 + Math.random() * 3; // Initial speed
-
-                switch (side) {
-                    case 0: // Left
-                        x = -size.width;
-                        y = Math.random() * window.innerHeight;
-                        vx = speed;
-                        vy = (Math.random() - 0.5) * 2;
-                        break;
-                    case 1: // Right
-                        x = window.innerWidth;
-                        y = Math.random() * window.innerHeight;
-                        vx = -speed;
-                        vy = (Math.random() - 0.5) * 2;
-                        break;
-                    case 2: // Top
-                        x = Math.random() * window.innerWidth;
-                        y = -size.height;
-                        vx = (Math.random() - 0.5) * 2;
-                        vy = speed;
-                        break;
-                    case 3: // Bottom
-                        x = Math.random() * window.innerWidth;
-                        y = window.innerHeight;
-                        vx = (Math.random() - 0.5) * 2;
-                        vy = -speed;
-                        break;
-                }
+                // Always spawn from the top
+                let x = Math.random() * window.innerWidth;
+                let y = -size.height;
+                let vx = (Math.random() - 0.5) * 4; // Random horizontal velocity for variety
+                let vy = 2 + Math.random() * 3; // Downward speed
 
                 // Random rotation for fun
                 const rotation = (Math.random() - 0.5) * 360;
