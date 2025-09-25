@@ -88,7 +88,7 @@
             const minVelocity = 0.1; // Threshold to stop
             const flyers = []; // Array to hold all flying things
 
-            // Funny flying things: Spawn one every 10 seconds
+            // Funny flying things: Spawn one every 5 seconds
             function spawnFlyingThing() {
                 const things = [
                     '🚀', '🛸', '⌨️', '💾', '📀', '⚙️', '💻', '🖥️', '🖱️', '📱', '🔌', '🔋', '📡', '🤖',
@@ -126,6 +126,7 @@
                 const width = window.innerWidth;
                 const height = window.innerHeight;
 
+                // Update positions
                 flyers.forEach(flyer => {
                     if (flyer.physics.settled) return;
 
@@ -162,12 +163,89 @@
                         }
                     }
 
-                    // Update physics
+                    // Temporarily update physics for collision checks
                     flyer.physics = { x, y, vx, vy, size, settled: flyer.physics.settled };
+                });
 
-                    // Apply transform (with continuous rotation if desired, but keeping initial for simplicity)
-                    const rotation = parseFloat(flyer.style.transform.match(/rotate\((-?\d+\.?\d*)deg\)/)?.[1] || 0);
-                    flyer.style.transform = `translate(${x}px, ${y}px) rotate(${rotation + vx}deg)`; // Slight rotate based on vx for fun
+                // Handle collisions
+                for (let i = 0; i < flyers.length; i++) {
+                    for (let j = i + 1; j < flyers.length; j++) {
+                        const f1 = flyers[i].physics;
+                        const f2 = flyers[j].physics;
+
+                        if (f1.settled && f2.settled) continue;
+
+                        const cx1 = f1.x + f1.size.width / 2;
+                        const cy1 = f1.y + f1.size.height / 2;
+                        const cx2 = f2.x + f2.size.width / 2;
+                        const cy2 = f2.y + f2.size.height / 2;
+
+                        const dx = cx2 - cx1;
+                        const dy = cy2 - cy1;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        const r1 = (f1.size.width + f1.size.height) / 4;
+                        const r2 = (f2.size.width + f2.size.height) / 4;
+                        const minDist = r1 + r2;
+
+                        if (dist < minDist && dist > 0) {
+                            const nx = dx / dist;
+                            const ny = dy / dist;
+
+                            const rvx = f2.vx - f1.vx;
+                            const rvy = f2.vy - f1.vy;
+                            const dot = rvx * nx + rvy * ny;
+
+                            // Resolve only if approaching or overlapping
+                            if (dot < 0 || dist < minDist * 0.9) { // Extra condition for deep overlaps
+                                const e = elasticity;
+                                const overlap = minDist - dist;
+
+                                if (f1.settled || f2.settled) {
+                                    // Treat settled as static
+                                    const moving = f1.settled ? f2 : f1;
+                                    const stat = f1.settled ? f1 : f2;
+
+                                    const rdot = moving.vx * nx + moving.vy * ny;
+                                    const imp = - (1 + e) * rdot;
+
+                                    moving.vx += imp * nx;
+                                    moving.vy += imp * ny;
+
+                                    // Position correction: push moving away
+                                    moving.x += overlap * nx;
+                                    moving.y += overlap * ny;
+
+                                } else {
+                                    // Both moving, elastic collision
+                                    const imp = - (1 + e) * dot / 2;
+
+                                    f1.vx -= imp * nx;
+                                    f1.vy -= imp * ny;
+                                    f2.vx += imp * nx;
+                                    f2.vy += imp * ny;
+
+                                    // Position correction
+                                    const push = overlap / 2;
+                                    f1.x -= push * nx;
+                                    f1.y -= push * ny;
+                                    f2.x += push * nx;
+                                    f2.y += push * ny;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Apply final transforms
+                flyers.forEach(flyer => {
+                    const { x, y, settled } = flyer.physics;
+                    if (!settled) {
+                        // Update velocities in physics (already done)
+                    }
+                    const rotationMatch = flyer.style.transform.match(/rotate\((-?\d+\.?\d*)deg\)/);
+                    const rotation = rotationMatch ? parseFloat(rotationMatch[1]) : 0;
+                    flyer.style.transform = `translate(${x}px, ${y}px) rotate(${rotation + flyer.physics.vx}deg)`;
                 });
 
                 requestAnimationFrame(animate);
@@ -176,10 +254,10 @@
             // Start animation loop
             animate();
 
-            // Spawn every 10 seconds
+            // Spawn every 5 seconds
             function scheduleSpawn() {
                 spawnFlyingThing();
-                setTimeout(scheduleSpawn, 10000);
+                setTimeout(scheduleSpawn, 5000);
             }
 
             // Start the first one after a short delay
