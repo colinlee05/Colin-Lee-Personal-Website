@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Updating...</title>
+    <title>Colin Lee</title>
     <style>
         body {
             background-color: black;
@@ -15,49 +15,63 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center; /* Added for explicit horizontal centering */
-            overflow: hidden; /* Prevents scrollbars if animation overflows */
+            align-items: center;
+            overflow: hidden;
+            position: relative; /* For positioning the particle container */
         }
         h1 {
             font-size: 2em;
-            margin-bottom: 10px; /* Adjusted spacing */
+            margin-bottom: 10px;
         }
         p {
             font-size: 1.2em;
-            margin: 5px 0; /* Better spacing between paragraphs */
+            margin: 5px 0;
         }
-        /* Subtle background animation: a gentle pulsing radial gradient */
-        body::before {
-            content: "";
+        .particle-container {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
-            opacity: 0.5;
-            animation: pulse 5s ease-in-out infinite;
-            z-index: -1; /* Behind the content */
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
         }
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: 0.3;
-            }
-            50% {
-                transform: scale(1.2);
-                opacity: 0.5;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 0.3;
-            }
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
         }
     </style>
 </head>
 <body>
     <h1>Updates Underway</h1>
     <p>Sorry, I'm not too sure how long the site will be down for.</p>
-    <p>Colin Lee - 09/23/2025</p>
+    <p>From: Colin Lee - 09/23/2025</p>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const particleContainer = document.createElement('div');
+            particleContainer.className = 'particle-container';
+            document.body.appendChild(particleContainer);
+            for (let i = 0; i < 50; i++) { // Adjust number for more/less particles
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                particle.style.animationDelay = `${Math.random() * 5}s`; // Random delay for natural twinkling
+                particle.style.animationDuration = `${3 + Math.random() * 4}s`; // Vary duration for variety
+                particleContainer.appendChild(particle);
+            }
+        });
+    </script>
 </body>
 </html>
