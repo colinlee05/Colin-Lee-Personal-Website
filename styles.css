@@ -243,12 +243,11 @@ button:hover {
     text-align: center;
 }
 
-/* UPDATED: Fix for fun fact paragraph margin */
 #fun-fact p {
     margin-bottom: 0;
 }
 
-/* UPDATED: Reusable .card class for DRY principle */
+/* Reusable .card class for DRY principle */
 .card {
     background-color: var(--content-block-bg);
     padding: 20px;
@@ -262,26 +261,76 @@ button:hover {
     transform: translateY(-5px);
 }
 
-/* UPDATED: Simplified .content-block */
+/* Simplified .content-block */
 .content-block {
     margin: 0 auto 10px;
     max-width: 800px;
     text-align: center; /* Center text in boxes */
-    /* All common styles moved to .card */
 }
 
-/* UPDATED: New style for semantic coursework list */
-.coursework-list {
-    list-style-type: none; /* Or 'disc' if you want bullets */
-    padding-left: 0;
+/* UPDATED: New style for Certifications divider */
+.section-divider {
+    border: none;
+    height: 1px;
+    background-color: var(--border-color);
+    opacity: 0.5;
+    margin: 20px auto;
+    width: 80%;
+}
+
+/* UPDATED: New styles for interactive course grid */
+.coursework-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    max-width: 800px;
+    margin: 20px auto 0;
+}
+
+.course-card {
+    background-color: var(--bg-color); /* Use a slightly different bg */
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 20px 15px;
+    text-align: center;
+    cursor: default;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    min-height: 60px; /* Prevents layout jump on hover */
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.course-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.course-description {
+    font-size: 0.9rem;
     text-align: left;
-    max-width: 400px;
-    margin: 10px auto 0;
+    margin: 0; /* Clear default margins */
+    padding: 0;
+    line-height: 1.4;
+    
+    /* This is the hover magic */
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.4s ease-out, margin-top 0.4s ease-out;
 }
 
-.coursework-list li {
-    margin-bottom: 5px;
+.course-card:hover .course-description {
+    margin-top: 15px; /* Add space when it appears */
+    max-height: 200px; /* Set to a height taller than it will ever be */
+    opacity: 1;
 }
+
 
 /* Skills & Resources & Social (List-Based Blocks) */
 .skills-list {
@@ -294,10 +343,8 @@ button:hover {
     margin: 0 auto;
 }
 
-/* UPDATED: Simplified .skills-list li */
 .skills-list li {
     padding: 15px; /* Kept specific padding */
-    /* All common styles moved to .card */
 }
 
 .social-list li {
@@ -356,26 +403,26 @@ button:hover {
 /* Contact Form Styles (Clean, Minimal Vibes) */
 #contact form {
     max-width: 600px;
-    margin: 0 auto 40px; /* Increased bottom margin for spacing */
+    margin: 0 auto 40px; 
     text-align: left;
 }
 
 #contact label {
     display: block;
-    margin-top: 20px; /* Increased spacing between fields */
-    font-weight: 500; /* Lighter weight for minimal vibe */
+    margin-top: 20px; 
+    font-weight: 500; 
     color: var(--text-color);
 }
 
 #contact input, #contact textarea {
     width: 100%;
     padding: 12px;
-    margin-bottom: 25px; /* Increased spacing */
+    margin-bottom: 25px; 
     border: 1px solid var(--border-color);
-    border-radius: 8px; /* Softer corners */
+    border-radius: 8px; 
     background-color: var(--section-bg);
     color: var(--text-color);
-    box-shadow: none; /* No shadows for clean look */
+    box-shadow: none; 
     transition: border-color 0.3s ease;
 }
 
@@ -389,13 +436,13 @@ button:hover {
     margin-top: 10px;
     border-radius: 8px;
     box-shadow: none;
-    font-size: 1.1rem; /* Slightly larger for better touch */
+    font-size: 1.1rem; 
 }
 
 .cf-turnstile {
-    margin: 0 auto 25px; /* Centered and increased spacing */
-    text-align: center; /* Center the widget */
-    display: block; /* Ensure centering works */
+    margin: 0 auto 25px; 
+    text-align: center; 
+    display: block; 
 }
 
 /* Clean Email Links (No Boxes, Simple List) */
@@ -408,7 +455,7 @@ button:hover {
 }
 
 .contact-list li {
-    margin-bottom: 20px; /* Increased spacing */
+    margin-bottom: 20px; 
     background-color: transparent;
     border: none;
     box-shadow: none;
@@ -416,7 +463,7 @@ button:hover {
 }
 
 .contact-list li strong {
-    font-weight: 500; /* Lighter for minimal vibe */
+    font-weight: 500; 
     margin-right: 10px;
     color: var(--text-color);
 }
@@ -567,11 +614,12 @@ footer {
     }
 
     .content-block,
-    .skills-list {
+    .skills-list,
+    .coursework-grid { /* UPDATED: Added coursework grid */
         grid-template-columns: 1fr; /* Stack on mobile */
     }
     
-    .coursework-list {
+    .coursework-grid {
         max-width: 100%; /* Allow full width on mobile */
     }
 
@@ -602,7 +650,15 @@ footer {
     .card:hover,
     .social-links li:hover,
     .contact-list li:hover,
-    .footer-links li:hover {
+    .footer-links li:hover,
+    .course-card:hover { /* UPDATED: Added course card */
         transform: none;
+    }
+
+    /* On touch devices, show description by default */
+    .course-description {
+        margin-top: 15px; 
+        max-height: 200px; 
+        opacity: 1;
     }
 }
