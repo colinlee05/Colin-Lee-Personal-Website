@@ -243,21 +243,44 @@ button:hover {
     text-align: center;
 }
 
-/* Consistent Content Blocks (Grey Boxes with Hover and Border) */
-.content-block {
+/* UPDATED: Fix for fun fact paragraph margin */
+#fun-fact p {
+    margin-bottom: 0;
+}
+
+/* UPDATED: Reusable .card class for DRY principle */
+.card {
     background-color: var(--content-block-bg);
     padding: 20px;
     border-radius: 5px;
     border: 1px solid var(--border-color);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    margin: 0 auto 10px;
-    max-width: 800px;
-    text-align: center; /* Center text in boxes */
     transition: transform 0.3s ease;
 }
 
-.content-block:hover {
+.card:hover {
     transform: translateY(-5px);
+}
+
+/* UPDATED: Simplified .content-block */
+.content-block {
+    margin: 0 auto 10px;
+    max-width: 800px;
+    text-align: center; /* Center text in boxes */
+    /* All common styles moved to .card */
+}
+
+/* UPDATED: New style for semantic coursework list */
+.coursework-list {
+    list-style-type: none; /* Or 'disc' if you want bullets */
+    padding-left: 0;
+    text-align: left;
+    max-width: 400px;
+    margin: 10px auto 0;
+}
+
+.coursework-list li {
+    margin-bottom: 5px;
 }
 
 /* Skills & Resources & Social (List-Based Blocks) */
@@ -271,17 +294,10 @@ button:hover {
     margin: 0 auto;
 }
 
+/* UPDATED: Simplified .skills-list li */
 .skills-list li {
-    background-color: var(--content-block-bg);
-    padding: 15px;
-    border-radius: 5px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
-}
-
-.skills-list li:hover {
-    transform: translateY(-5px);
+    padding: 15px; /* Kept specific padding */
+    /* All common styles moved to .card */
 }
 
 .social-list li {
@@ -289,7 +305,6 @@ button:hover {
     align-items: center;
     justify-content: center; /* Center content horizontally */
     gap: 10px;
-    padding: 15px;
     flex-wrap: wrap; /* Wrap on small screens */
 }
 
@@ -498,7 +513,7 @@ footer {
     border-radius: 50%;
     cursor: pointer;
     opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease, display 0.3s;
     z-index: 1000;
 }
 
@@ -555,6 +570,10 @@ footer {
     .skills-list {
         grid-template-columns: 1fr; /* Stack on mobile */
     }
+    
+    .coursework-list {
+        max-width: 100%; /* Allow full width on mobile */
+    }
 
     .social-list li {
         justify-content: center; /* Center on mobile */
@@ -580,8 +599,7 @@ footer {
 
 @media (hover: none) {
     /* Disable hover effects on touch devices */
-    .content-block:hover,
-    .skills-list li:hover,
+    .card:hover,
     .social-links li:hover,
     .contact-list li:hover,
     .footer-links li:hover {
