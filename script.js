@@ -158,10 +158,10 @@ if (contactForm) {
             contactForm.reset();
         }
       } else {
-        showFormMessage('Message not delivered. Server error. ⚠️', 'error');
+        showFormMessage('Message not delivered. Please try again. ⚠️', 'error');
       }
     } catch (error) {
-      showFormMessage('Message not delivered. Network error. ⚠️', 'error');
+      showFormMessage('Message not delivered. Please try again. ⚠️', 'error');
     } finally {
       submitButton.disabled = false;
       // Reset Cloudflare Turnstile widget
@@ -211,3 +211,4 @@ if (header) {
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For mobile Safari bounce
   }, { passive: true }); // Improves performance
 }
+
