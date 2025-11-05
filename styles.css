@@ -170,6 +170,12 @@ section {
     animation: fadeIn 0.5s ease forwards;
 }
 
+/* *** ADDED THIS RULE *** */
+main section:last-of-type {
+    padding-bottom: 20px; /* Reduces the large 60px padding */
+}
+
+
 @keyframes fadeIn {
     to {
         opacity: 1;
@@ -255,6 +261,14 @@ button:hover {
     border: 1px solid var(--border-color);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease;
+    
+    /* *** ADDED THESE 3 LINES for vertical centering *** */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    /* *** ADDED THIS LINE for consistent grid height *** */
+    height: 100%;
 }
 
 .card:hover {
@@ -482,7 +496,10 @@ button:hover {
 .form-message {
     padding: 15px;
     border-radius: 10px;
-    margin-bottom: 20px;
+    /* *** CHANGED THIS LINE *** */
+    margin-bottom: 0;
+    /* *** ADDED THIS LINE *** */
+    margin-top: 20px;
     font-weight: 600;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -599,6 +616,11 @@ footer {
 
     section {
         padding: 40px 15px; /* Reduced for mobile */
+    }
+    
+    /* *** ADDED THIS RULE *** */
+    main section:last-of-type {
+        padding-bottom: 20px; /* Also apply to mobile */
     }
 
     h2 {
