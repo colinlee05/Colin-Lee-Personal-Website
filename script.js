@@ -172,12 +172,17 @@ if (contactForm) {
   });
 }
 
-// Helper to show inline message above the form
+// Helper to show inline message
 function showFormMessage(text, type) {
   const message = document.createElement('div');
   message.classList.add('form-message', type);
   message.textContent = text;
-  contactForm.insertBefore(message, contactForm.firstChild);
+  
+  // *** CHANGED THIS LINE ***
+  // contactForm.insertBefore(message, contactForm.firstChild);
+  // *** TO THIS LINE ***
+  contactForm.appendChild(message);
+  
   setTimeout(() => {
     message.style.opacity = '0';
   }, 5000); // Start fade out after 5s
@@ -211,4 +216,3 @@ if (header) {
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For mobile Safari bounce
   }, { passive: true }); // Improves performance
 }
-
