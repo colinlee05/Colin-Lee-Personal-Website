@@ -216,3 +216,29 @@ if (header) {
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For mobile Safari bounce
   }, { passive: true }); // Improves performance
 }
+
+
+// --- ADD THIS AT THE END OF script.js ---
+
+// Professional Scroll-In Animations (Option 2)
+// 1. Create the observer
+const scrollObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    // When the section is 10% visible...
+    if (entry.isIntersecting) {
+      // Add the class to make it visible
+      entry.target.classList.add('is-visible');
+      // Stop watching it (it's already on screen)
+      scrollObserver.unobserve(entry.target); 
+    }
+  });
+}, {
+  threshold: 0.1 // Trigger when 10% of the item is visible
+});
+
+// 2. Find all the sections and tell the observer to watch them
+const sectionsToAnimate = document.querySelectorAll('main > section');
+sectionsToAnimate.forEach(section => {
+    section.classList.add('fade-in-section'); // Add the "hidden" state
+    scrollObserver.observe(section); // Start watching
+});
