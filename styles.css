@@ -178,16 +178,14 @@ main section:last-of-type {
 }
 
 
-/* --- DELETED OLD @keyframes fadeIn --- */
-
-
 .hero {
     background-color: var(--hero-bg);
     
-    /* --- ADDED FOR OPTION 1 --- */
-    background: linear-gradient(270deg, var(--hero-bg), #fdd02326, #461d7c26, var(--hero-bg));
+    /* --- THESE 2 LINES ARE NOW FIXED --- */
+    background: linear-gradient(270deg, var(--hero-bg), #fdd0231a, #461d7c1a, var(--hero-bg));
+    animation: flowAnimation 25s ease infinite;
+    /* --- (background-size is inherited from 'section' but we'll add it for safety) --- */
     background-size: 400% 400%;
-    animation: flowAnimation 20s ease infinite;
 }
 
 .content {
