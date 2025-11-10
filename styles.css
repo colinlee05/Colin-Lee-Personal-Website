@@ -181,12 +181,9 @@ main section:last-of-type {
 .hero {
     background-color: var(--hero-bg);
     
-    /* --- THESE LINES ARE NOW REMOVED TO STOP ANIMATION ON HERO --- */
-    /*
-    background: linear-gradient(270deg, var(--hero-bg), #fdd0231a, #461d7c1a, var(--hero-bg));
-    animation: flowAnimation 25s ease infinite;
-    background-size: 400% 400%;
-    */
+    /* --- THIS IS THE FIX: Explicitly override the 'section' styles --- */
+    background: var(--hero-bg); /* Use 'background' to reset the gradient */
+    animation: none; /* Stop the animation from running */
 }
 
 .content {
