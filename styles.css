@@ -61,7 +61,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease; /* THIS IS THE SLIDE ANIMATION */
 }
 
 header.hidden {
@@ -72,6 +72,10 @@ header.hidden {
     display: flex;
     align-items: center;
     gap: 10px;
+    /* --- NEW --- */
+    /* This ensures the title is in the center on mobile */
+    flex-grow: 1;
+    justify-content: center;
 }
 
 .header-img {
@@ -85,10 +89,10 @@ header h1 {
     margin: 0;
 }
 
+/* --- UPDATED --- */
+/* Nav is no longer a flex container in the header bar */
 nav {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+    /* This element just holds the dropdown menu now */
 }
 
 nav ul {
@@ -110,12 +114,14 @@ nav a:hover {
 }
 
 .hamburger {
-    display: none;
+    display: none; /* Hidden on desktop */
     background: none;
     border: none;
     color: #fff;
     font-size: 1.5rem;
     cursor: pointer;
+    /* --- NEW --- */
+    z-index: 1001; /* Make sure it's on top */
 }
 
 #dark-mode-toggle {
@@ -156,7 +162,7 @@ body.dark-mode .moon-icon {
 
 /* Main */
 main {
-    padding-top: 80px;
+    padding-top: 80px; /* THIS IS BASED ON THE HEADER PADDING */
 }
 
 /* Sections with Fade-In Animation and Even Spacing */
@@ -539,7 +545,7 @@ footer {
 }
 
 .footer-links li:hover {
-    transform: translateY(-5px);.
+    transform: translateY(-5px);
 }
 
 .footer-links a {
@@ -611,27 +617,61 @@ footer {
 
 /* Media Queries for Mobile */
 @media (max-width: 768px) {
+    /* --- NEW --- */
+    /* This wraps the header bar and the dropdown nav */
     header {
-        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    
+    /* --- NEW --- */
+    /* This makes the nav (and its ul) live outside the header bar */
+    header nav {
+        order: 4; /* Puts it last */
+        width: 100%;
+    }
+    
+    /* --- NEW --- */
+    /* Shrink logo and title to fit on one line */
+    .header-content .header-img {
+        width: 40px;
+    }
+    .header-content h1 {
+        font-size: 1.5rem; /* Shrink title */
+    }
+    
+    /* --- NEW --- */
+    /* Reposition the dark mode toggle slightly */
+    #dark-mode-toggle {
+        margin: 0;
     }
 
     nav ul {
-        display: none;
+        display: none; /* Hide dropdown by default */
         flex-direction: column;
         gap: 10px;
         width: 100%;
+        /* --- NEW --- */
+        /* Position the dropdown menu */
+        position: absolute;
+        top: 100%; /* Place it right below the header */
+        left: 0;
+        background-color: var(--primary-color);
+        padding: 10px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
 
     nav ul.active {
-        display: flex;
+        display: flex; /* Show dropdown */
     }
 
     .hamburger {
-        display: block;
+        display: block; /* Show hamburger */
     }
 
+    /* --- UPDATED --- */
+    /* This is now 80px because the header is shorter */
     main {
-        padding-top: 120px;
+        padding-top: 80px;
     }
 
     section {
