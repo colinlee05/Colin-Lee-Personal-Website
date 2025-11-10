@@ -178,10 +178,10 @@ main section:last-of-type {
 }
 
 
-.hero {
+/* --- THIS IS THE FIX --- */
+/* Changed .hero to section.hero to make it more specific */
+section.hero {
     background-color: var(--hero-bg);
-    
-    /* --- THIS IS THE FIX: Explicitly override the 'section' styles --- */
     background: var(--hero-bg); /* Use 'background' to reset the gradient */
     animation: none; /* Stop the animation from running */
 }
@@ -539,7 +539,7 @@ footer {
 }
 
 .footer-links li:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px);.
 }
 
 .footer-links a {
