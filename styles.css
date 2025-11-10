@@ -181,11 +181,12 @@ main section:last-of-type {
 .hero {
     background-color: var(--hero-bg);
     
-    /* --- THESE 2 LINES ARE NOW FIXED --- */
+    /* --- THESE LINES ARE NOW REMOVED TO STOP ANIMATION ON HERO --- */
+    /*
     background: linear-gradient(270deg, var(--hero-bg), #fdd0231a, #461d7c1a, var(--hero-bg));
     animation: flowAnimation 25s ease infinite;
-    /* --- (background-size is inherited from 'section' but we'll add it for safety) --- */
     background-size: 400% 400%;
+    */
 }
 
 .content {
