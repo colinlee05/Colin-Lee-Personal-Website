@@ -7,17 +7,18 @@
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <!-- Cloudflare Turnstile Script -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
+
     <header id="header">
+        <button class="hamburger" aria-expanded="false">☰</button>
+        
         <div class="header-content">
-            <img src="lsu-logo.png" alt="Profile Picture" class="header-img"> <!-- Update path if needed -->
-            <h1>Colin Lee</h1>
+            <img src="lsu-logo.png" alt="Profile Picture" class="header-img"> <h1>Colin Lee</h1>
         </div>
+
         <nav>
-            <button class="hamburger" aria-expanded="false">☰</button>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#education">Education</a></li>
@@ -31,32 +32,29 @@
                 <li><a href="#social">Social</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <button id="dark-mode-toggle" aria-label="Toggle theme">
-                <!-- Sun icon (shown in dark mode) -->
-                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="5"/>
-                    <line x1="12" y1="1" x2="12" y2="3"/>
-                    <line x1="12" y1="21" x2="12" y2="23"/>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                    <line x1="1" y1="12" x2="3" y2="12"/>
-                    <line x1="21" y1="12" x2="23" y2="12"/>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-                </svg>
-                <!-- Moon icon (shown in light mode) -->
-                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-                </svg>
-            </button>
         </nav>
-    </header>
 
+        <button id="dark-mode-toggle" aria-label="Toggle theme">
+            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"/>
+                <line x1="12" y1="1" x2="12" y2="3"/>
+                <line x1="12" y1="21" x2="12" y2="23"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                <line x1="1" y1="12" x2="3" y2="12"/>
+                <line x1="21" y1="12" x2="23" y2="12"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+        </button>
+    </header>
     <main>
         <section id="about" class="hero">
             <div class="content">
-                <img src="colin-photo.png" alt="Colin" class="profile-img"> <!-- Your image  -->
-                <h2>About Me</h2>
+                <img src="colin-photo.png" alt="Colin" class="profile-img"> <h2>About Me</h2>
                 <p>I'm Colin Lee, a Louisiana State University student majoring in Information Systems and Analytics (ISDS) with a focus on Cyber Risk, and minoring in Computer Science. Driven by a passion for technology, cybersecurity, and problem-solving, I aim to contribute to secure and innovative digital solutions. Geaux Tigers!</p>
                 
                 <button id="fun-fact-btn">Fun Fact</button>
@@ -80,7 +78,6 @@
                     
                     <p><strong>Relevant Coursework:</strong></p>
                     
-                    <!-- UPDATED: Added two new course cards for a 6-item grid -->
                     <div class="coursework-grid">
                         <div class="course-card">
                             <h4 class="course-title">Cybersecurity Fundamentals</h4>
@@ -106,14 +103,12 @@
                                 Explores relational database design, data integrity, and the use of SQL to manage and query information systems.
                             </p>
                         </div>
-                        <!-- NEWLY ADDED -->
                         <div class="course-card">
                             <h4 class="course-title">IT Risk Management</h4>
                             <p class="course-description">
                                 Covers frameworks for identifying, assessing, and mitigating IT risks, aligning with cybersecurity and audit goals.
                             </p>
                         </div>
-                        <!-- NEWLY ADDED -->
                         <div class="course-card">
                             <h4 class="course-title">Object-Oriented Programming</h4>
                             <p class="course-description">
@@ -159,8 +154,7 @@
                 <h2>Experience</h2>
                 <div class="content-block card">
                     <h3>Administrative Assistant, MAC-RE LLC</h3>
-                    <p><em>Metairie, Louisiana | Summer 2024</em></p> <!-- Update dates -->
-                    <p>MAC-RE LLC is a leading real estate management firm providing affordable housing solutions, property management, appraisals, and sales across Louisiana, Texas, and Mississippi. In this role, I handled computer filing and data entry for property records, organized digital documents using management software, performed basic IT support for office systems, and assisted in administrative tasks to streamline operations.</p>
+                    <p><em>Metairie, Louisiana | Summer 2024</em></p> <p>MAC-RE LLC is a leading real estate management firm providing affordable housing solutions, property management, appraisals, and sales across Louisiana, Texas, and Mississippi. In this role, I handled computer filing and data entry for property records, organized digital documents using management software, performed basic IT support for office systems, and assisted in administrative tasks to streamline operations.</p>
                 </div>
             </div>
         </section>
@@ -232,7 +226,6 @@
                 <h2>Contact Me</h2>
                 <p>I’d love to connect—whether about projects, cybersecurity, or LSU. Reach out anytime!</p>
                 
-                <!-- Protected Contact Form with Turnstile (Managed Mode) -->
                 <form action="https://contact-form-handler.colin-lee.workers.dev/" method="POST">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" placeholder="Your Name">
@@ -253,11 +246,7 @@
                 </form>
                 
                 <ul class="contact-list">
-                    <!--
-                    <li><strong>Email:</strong> <a href="mailto:colinfrancislee@gmail.com">colinfrancislee@gmail.com</a></li>
-                    <li><strong>LSU Email:</strong> <a href="mailto:clee149@lsu.edu">clee149@lsu.edu</a></li>
-                    -->
-                </ul>
+                    </ul>
             </div>
         </section>
     </main>
@@ -285,5 +274,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
-
