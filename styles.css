@@ -72,10 +72,11 @@ header.hidden {
     display: flex;
     align-items: center;
     gap: 10px;
-    /* --- DESKTOP IS UNCHANGED --- */
+    /* --- NEW: Prevents shrinking on mobile --- */
+    flex-shrink: 0;
 }
 
-/* --- NEW: Rule for the clickable logo --- */
+/* Rule for the clickable logo */
 .lsu-logo-link {
     display: inline-block;
     line-height: 0; /* Prevents extra space */
@@ -92,7 +93,7 @@ header h1 {
     margin: 0;
 }
 
-/* --- DESKTOP IS UNCHANGED --- */
+/* This is the perfect DESKTOP layout */
 nav {
     display: flex;
     align-items: center;
@@ -117,14 +118,14 @@ nav a:hover {
     color: var(--link-hover);
 }
 
-/* --- DESKTOP IS UNCHANGED --- */
 .hamburger {
-    display: none; 
+    display: none; /* Hidden on desktop */
     background: none;
     border: none;
     color: #fff;
     font-size: 1.5rem;
     cursor: pointer;
+    z-index: 1001; /* Make sure it's on top */
 }
 
 #dark-mode-toggle {
@@ -165,7 +166,7 @@ body.dark-mode .moon-icon {
 
 /* Main */
 main {
-    padding-top: 80px; 
+    padding-top: 80px; /* THIS IS BASED ON THE HEADER PADDING */
 }
 
 /* Sections with Fade-In Animation and Even Spacing */
@@ -182,13 +183,14 @@ section {
 }
 
 main section:last-of-type {
-    padding-bottom: 20px; 
+    padding-bottom: 20px; /* Reduces the large 60px padding */
 }
+
 
 section.hero {
     background-color: var(--hero-bg);
-    background: var(--hero-bg); 
-    animation: none; 
+    background: var(--hero-bg); /* Use 'background' to reset the gradient */
+    animation: none; /* Stop the animation from running */
 }
 
 .content {
@@ -257,6 +259,7 @@ button:hover {
     margin-bottom: 0;
 }
 
+/* Reusable .card class for DRY principle */
 .card {
     background-color: var(--content-block-bg);
     padding: 20px;
@@ -274,12 +277,14 @@ button:hover {
     transform: translateY(-5px);
 }
 
+/* Simplified .content-block */
 .content-block {
     margin: 0 auto 10px;
     max-width: 800px;
-    text-align: center; 
+    text-align: center; /* Center text in boxes */
 }
 
+/* UPDATED: New style for Certifications divider */
 .section-divider {
     border: none;
     height: 1px;
@@ -289,6 +294,7 @@ button:hover {
     width: 80%;
 }
 
+/* UPDATED: New styles for interactive course grid */
 .coursework-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -298,7 +304,7 @@ button:hover {
 }
 
 .course-card {
-    background-color: var(--bg-color); 
+    background-color: var(--bg-color); /* Use a slightly different bg */
     border: 1px solid var(--border-color);
     border-radius: 5px;
     padding: 20px 15px;
@@ -306,7 +312,7 @@ button:hover {
     cursor: default;
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    min-height: 60px; 
+    min-height: 60px; /* Prevents layout jump on hover */
 }
 
 .course-card:hover {
@@ -324,7 +330,7 @@ button:hover {
 .course-description {
     font-size: 0.9rem;
     text-align: left;
-    margin: 0; 
+    margin: 0; /* Clear default margins */
     padding: 0;
     line-height: 1.4;
     max-height: 0;
@@ -334,37 +340,40 @@ button:hover {
 }
 
 .course-card:hover .course-description {
-    margin-top: 15px; 
-    max-height: 200px; 
+    margin-top: 15px; /* Add space when it appears */
+    max-height: 200px; /* Set to a height taller than it will ever be */
     opacity: 1;
 }
 
+
+/* Skills & Resources & Social (List-Based Blocks) */
 .skills-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     list-style: none;
-    text-align: center; 
+    text-align: center; /* Center text in list items */
     max-width: 800px;
     margin: 0 auto;
 }
 
 .skills-list li {
-    padding: 15px; 
+    padding: 15px; /* Kept specific padding */
 }
 
 .social-list li {
     display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: center; /* Center content horizontally */
     gap: 10px;
-    flex-wrap: wrap; 
+    flex-wrap: wrap; /* Wrap on small screens */
 }
 
 .social-item span {
     font-weight: 600;
 }
 
+/* Password Strength Analyzer */
 #password-input {
     width: 100%;
     padding: 10px;
@@ -394,6 +403,7 @@ button:hover {
     text-align: center;
 }
 
+/* Social Icons */
 .social-icon {
     width: 30px;
     transition: transform 0.3s ease;
@@ -404,6 +414,7 @@ button:hover {
     transform: scale(1.1);
 }
 
+/* Contact Form Styles (Clean, Minimal Vibes) */
 #contact form {
     max-width: 600px;
     margin: 0 auto 40px; 
@@ -448,6 +459,7 @@ button:hover {
     display: block; 
 }
 
+/* Clean Email Links (No Boxes, Simple List) */
 .contact-list {
     list-style: none;
     padding: 0;
@@ -480,6 +492,7 @@ button:hover {
     color: var(--link-hover);
 }
 
+/* Inline Form Message Styles (Cute with rounded corners) */
 .form-message {
     padding: 15px;
     border-radius: 10px;
@@ -502,6 +515,7 @@ button:hover {
     color: red;
 }
 
+/* Footer */
 footer {
     background-color: var(--footer-bg);
     color: var(--footer-text);
@@ -549,6 +563,7 @@ footer {
     color: #38165f;
 }
 
+/* Back to Top Button */
 #back-to-top {
     position: fixed;
     bottom: 20px;
@@ -572,12 +587,14 @@ footer {
     transform: translateY(-5px);
 }
 
+/* Keyframes for Flowing Background */
 @keyframes flowAnimation {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
+/* Classes for Scroll-In Animation */
 .fade-in-section {
     opacity: 0;
     transform: translateY(20px);
@@ -589,71 +606,54 @@ footer {
     transform: translateY(0);
 }
 
-/* === ALL FIXES ARE IN THIS MEDIA QUERY === */
+
+/* === ALL MOBILE FIXES ARE IN THIS MEDIA QUERY === */
 @media (max-width: 768px) {
-    header {
-        flex-wrap: wrap; /* Allows nav to drop below */
-    }
-
-    /* --- 1. THIS CENTERS YOUR LOGO/TITLE --- */
-    .header-content {
-        flex-grow: 1; /* Takes up the middle space */
-        flex-basis: 0;
-        justify-content: center; /* Centers the content */
-    }
     
-    .header-content .header-img {
-        width: 40px; /* Shrink logo */
-    }
+    /* 1. Prevent "Colin Lee" from wrapping */
     .header-content h1 {
-        font-size: 1.5rem; /* Shrink title */
+        white-space: nowrap;
+        font-size: 1.5rem; /* Shrink to fit */
+    }
+    .header-content .header-img {
+        width: 40px; /* Shrink logo to help */
     }
 
-    /* --- 2. THIS MOVES THE NAV (LINKS) OFF-SCREEN --- */
-    /* (But leaves the toggle button where it is) */
-    nav {
-        order: 3; /* Puts it last, after the toggle */
-        width: 100%;
-    }
-    
+    /* 2. Reposition the main dropdown menu */
     nav ul {
         display: none; /* Hide links by default */
         flex-direction: column;
         gap: 10px;
         width: 100%;
-        /* Positions the dropdown */
         position: absolute;
-        top: 100%; 
+        top: 100%; /* Place it right below the header */
         left: 0;
         background-color: var(--primary-color);
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        
-        /* --- 3. THIS IS THE PADDING FIX --- */
-        padding: 10px 20px; 
+        padding: 10px 20px; /* Add left/right padding */
     }
 
     nav ul.active {
         display: flex; /* Show the dropdown */
     }
 
-    /* --- 4. THIS POSITIONS THE HAMBURGER/TOGGLE --- */
+    /* 3. Show the hamburger menu */
     .hamburger {
         display: block;
-        order: -1; /* Puts it on the far left */
-        flex-shrink: 0;
+        /* It's grouped with the nav, so it appears on the right */
     }
 
+    /* 4. Group the toggle button with the hamburger */
     #dark-mode-toggle {
-        margin: 0;
-        flex-shrink: 0;
-        /* It stays on the right by default */
+        margin: 0 0 0 10px; /* Add space between ham/toggle */
     }
 
-    /* --- 5. THIS FIXES THE PAGE CONTENT OVERLAP --- */
+    /* 5. Fix page content overlap */
     main {
-        padding-top: 80px; /* Was 120px */
+        padding-top: 80px; /* Was 120px, now matches new header */
     }
 
+    /* --- Other mobile styles (unchanged) --- */
     section {
         padding: 40px 15px; 
     }
@@ -699,6 +699,8 @@ footer {
         right: 10px;
     }
 }
+/* === END OF MOBILE FIXES === */
+
 
 @media (min-width: 769px) {
     header.hidden {
