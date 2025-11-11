@@ -72,10 +72,13 @@ header.hidden {
     display: flex;
     align-items: center;
     gap: 10px;
-    /* --- NEW --- */
-    /* This ensures the title is in the center on mobile */
-    flex-grow: 1;
-    justify-content: center;
+    /* --- DESKTOP FIX: Removed flex-grow & justify-content --- */
+}
+
+/* --- NEW: Rule for the clickable logo --- */
+.lsu-logo-link {
+    display: inline-block;
+    line-height: 0; /* Prevents extra space */
 }
 
 .header-img {
@@ -120,7 +123,6 @@ nav a:hover {
     color: #fff;
     font-size: 1.5rem;
     cursor: pointer;
-    /* --- NEW --- */
     z-index: 1001; /* Make sure it's on top */
 }
 
@@ -617,21 +619,23 @@ footer {
 
 /* Media Queries for Mobile */
 @media (max-width: 768px) {
-    /* --- NEW --- */
-    /* This wraps the header bar and the dropdown nav */
+    /* --- UPDATED: Removed flex-wrap --- */
     header {
-        flex-wrap: wrap;
+        /* This forces the [icon] [title] [icon] to stay on one row */
     }
     
-    /* --- NEW --- */
-    /* This makes the nav (and its ul) live outside the header bar */
     header nav {
         order: 4; /* Puts it last */
         width: 100%;
     }
     
-    /* --- NEW --- */
-    /* Shrink logo and title to fit on one line */
+    /* --- NEW: Added all centering rules here --- */
+    .header-content {
+        flex-grow: 1; /* Take up remaining space */
+        flex-basis: 0; /* Allow it to grow/shrink properly */
+        justify-content: center; /* Center the logo/title */
+    }
+    
     .header-content .header-img {
         width: 40px;
     }
@@ -639,10 +643,10 @@ footer {
         font-size: 1.5rem; /* Shrink title */
     }
     
-    /* --- NEW --- */
-    /* Reposition the dark mode toggle slightly */
+    /* --- UPDATED --- */
     #dark-mode-toggle {
         margin: 0;
+        flex-shrink: 0; /* Prevent shrinking */
     }
 
     nav ul {
@@ -650,8 +654,6 @@ footer {
         flex-direction: column;
         gap: 10px;
         width: 100%;
-        /* --- NEW --- */
-        /* Position the dropdown menu */
         position: absolute;
         top: 100%; /* Place it right below the header */
         left: 0;
@@ -666,10 +668,9 @@ footer {
 
     .hamburger {
         display: block; /* Show hamburger */
+        flex-shrink: 0; /* Prevent shrinking */
     }
 
-    /* --- UPDATED --- */
-    /* This is now 80px because the header is shorter */
     main {
         padding-top: 80px;
     }
@@ -678,7 +679,6 @@ footer {
         padding: 40px 15px; /* Reduced for mobile */
     }
     
-    /* *** ADDED THIS RULE *** */
     main section:last-of-type {
         padding-bottom: 20px; /* Also apply to mobile */
     }
