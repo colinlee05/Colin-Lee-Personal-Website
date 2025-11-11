@@ -414,38 +414,53 @@ button:hover {
     transform: scale(1.1);
 }
 
-/* === NEW CSS RULES ADDED HERE === */
+/* === THIS ENTIRE BLOCK IS UPDATED === */
 /* GitHub Link in Publications */
 .github-link {
     display: flex;
+    flex-direction: column; /* Stack text and button */
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* Space between text and button */
+}
+
+.github-link p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0; /* Remove default p margins */
+    max-width: 600px; /* Ensure text wraps nicely */
+}
+
+.github-button {
+    /* Borrowing from 'button' style */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    flex-wrap: wrap; /* In case of small screens */
-    margin-top: 20px; /* Add space below the divider */
-}
-
-.github-icon {
-    width: 30px; /* Match social icons */
-    flex-shrink: 0;
-}
-
-.github-link span {
-    font-size: 1.1rem; /* Match paragraph text */
-    line-height: 1.6;
-}
-
-.github-link a {
-    color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
     font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.github-button:hover {
+    background-color: #38165f;
+    transform: translateY(-2px);
+    color: #fff;
     text-decoration: none;
 }
 
-.github-link a:hover {
-    text-decoration: underline;
-    color: var(--link-hover);
+.github-button .github-icon {
+    width: 24px;
+    height: 24px;
+    filter: invert(1); /* Assumes black logo, turns it white */
 }
-/* === END OF NEW CSS RULES === */
+/* === END OF UPDATED BLOCK === */
 
 
 /* Contact Form Styles (Clean, Minimal Vibes) */
