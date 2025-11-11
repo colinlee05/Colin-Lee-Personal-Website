@@ -414,6 +414,40 @@ button:hover {
     transform: scale(1.1);
 }
 
+/* === NEW CSS RULES ADDED HERE === */
+/* GitHub Link in Publications */
+.github-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap; /* In case of small screens */
+    margin-top: 20px; /* Add space below the divider */
+}
+
+.github-icon {
+    width: 30px; /* Match social icons */
+    flex-shrink: 0;
+}
+
+.github-link span {
+    font-size: 1.1rem; /* Match paragraph text */
+    line-height: 1.6;
+}
+
+.github-link a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.github-link a:hover {
+    text-decoration: underline;
+    color: var(--link-hover);
+}
+/* === END OF NEW CSS RULES === */
+
+
 /* Contact Form Styles (Clean, Minimal Vibes) */
 #contact form {
     max-width: 600px;
