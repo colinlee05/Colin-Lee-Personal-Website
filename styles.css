@@ -72,7 +72,7 @@ header.hidden {
     display: flex;
     align-items: center;
     gap: 10px;
-    /* --- DESKTOP FIX: Removed flex-grow & justify-content --- */
+    /* --- DESKTOP IS UNCHANGED --- */
 }
 
 /* --- NEW: Rule for the clickable logo --- */
@@ -92,10 +92,11 @@ header h1 {
     margin: 0;
 }
 
-/* --- UPDATED --- */
-/* Nav is no longer a flex container in the header bar */
+/* --- DESKTOP IS UNCHANGED --- */
 nav {
-    /* This element just holds the dropdown menu now */
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 nav ul {
@@ -116,14 +117,14 @@ nav a:hover {
     color: var(--link-hover);
 }
 
+/* --- DESKTOP IS UNCHANGED --- */
 .hamburger {
-    display: none; /* Hidden on desktop */
+    display: none; 
     background: none;
     border: none;
     color: #fff;
     font-size: 1.5rem;
     cursor: pointer;
-    z-index: 1001; /* Make sure it's on top */
 }
 
 #dark-mode-toggle {
@@ -164,7 +165,7 @@ body.dark-mode .moon-icon {
 
 /* Main */
 main {
-    padding-top: 80px; /* THIS IS BASED ON THE HEADER PADDING */
+    padding-top: 80px; 
 }
 
 /* Sections with Fade-In Animation and Even Spacing */
@@ -180,18 +181,14 @@ section {
     animation: flowAnimation 25s ease infinite;
 }
 
-/* *** ADDED THIS RULE *** */
 main section:last-of-type {
-    padding-bottom: 20px; /* Reduces the large 60px padding */
+    padding-bottom: 20px; 
 }
 
-
-/* --- THIS IS THE FIX --- */
-/* Changed .hero to section.hero to make it more specific */
 section.hero {
     background-color: var(--hero-bg);
-    background: var(--hero-bg); /* Use 'background' to reset the gradient */
-    animation: none; /* Stop the animation from running */
+    background: var(--hero-bg); 
+    animation: none; 
 }
 
 .content {
@@ -260,7 +257,6 @@ button:hover {
     margin-bottom: 0;
 }
 
-/* Reusable .card class for DRY principle */
 .card {
     background-color: var(--content-block-bg);
     padding: 20px;
@@ -268,13 +264,9 @@ button:hover {
     border: 1px solid var(--border-color);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease;
-    
-    /* *** ADDED THESE 3 LINES for vertical centering *** */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
-    /* *** ADDED THIS LINE for consistent grid height *** */
     height: 100%;
 }
 
@@ -282,14 +274,12 @@ button:hover {
     transform: translateY(-5px);
 }
 
-/* Simplified .content-block */
 .content-block {
     margin: 0 auto 10px;
     max-width: 800px;
-    text-align: center; /* Center text in boxes */
+    text-align: center; 
 }
 
-/* UPDATED: New style for Certifications divider */
 .section-divider {
     border: none;
     height: 1px;
@@ -299,7 +289,6 @@ button:hover {
     width: 80%;
 }
 
-/* UPDATED: New styles for interactive course grid */
 .coursework-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -309,7 +298,7 @@ button:hover {
 }
 
 .course-card {
-    background-color: var(--bg-color); /* Use a slightly different bg */
+    background-color: var(--bg-color); 
     border: 1px solid var(--border-color);
     border-radius: 5px;
     padding: 20px 15px;
@@ -317,7 +306,7 @@ button:hover {
     cursor: default;
     transition: all 0.3s ease;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    min-height: 60px; /* Prevents layout jump on hover */
+    min-height: 60px; 
 }
 
 .course-card:hover {
@@ -335,11 +324,9 @@ button:hover {
 .course-description {
     font-size: 0.9rem;
     text-align: left;
-    margin: 0; /* Clear default margins */
+    margin: 0; 
     padding: 0;
     line-height: 1.4;
-    
-    /* This is the hover magic */
     max-height: 0;
     opacity: 0;
     overflow: hidden;
@@ -347,40 +334,37 @@ button:hover {
 }
 
 .course-card:hover .course-description {
-    margin-top: 15px; /* Add space when it appears */
-    max-height: 200px; /* Set to a height taller than it will ever be */
+    margin-top: 15px; 
+    max-height: 200px; 
     opacity: 1;
 }
 
-
-/* Skills & Resources & Social (List-Based Blocks) */
 .skills-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     list-style: none;
-    text-align: center; /* Center text in list items */
+    text-align: center; 
     max-width: 800px;
     margin: 0 auto;
 }
 
 .skills-list li {
-    padding: 15px; /* Kept specific padding */
+    padding: 15px; 
 }
 
 .social-list li {
     display: flex;
     align-items: center;
-    justify-content: center; /* Center content horizontally */
+    justify-content: center; 
     gap: 10px;
-    flex-wrap: wrap; /* Wrap on small screens */
+    flex-wrap: wrap; 
 }
 
 .social-item span {
     font-weight: 600;
 }
 
-/* Password Strength Analyzer */
 #password-input {
     width: 100%;
     padding: 10px;
@@ -410,7 +394,6 @@ button:hover {
     text-align: center;
 }
 
-/* Social Icons */
 .social-icon {
     width: 30px;
     transition: transform 0.3s ease;
@@ -421,7 +404,6 @@ button:hover {
     transform: scale(1.1);
 }
 
-/* Contact Form Styles (Clean, Minimal Vibes) */
 #contact form {
     max-width: 600px;
     margin: 0 auto 40px; 
@@ -466,7 +448,6 @@ button:hover {
     display: block; 
 }
 
-/* Clean Email Links (No Boxes, Simple List) */
 .contact-list {
     list-style: none;
     padding: 0;
@@ -499,13 +480,10 @@ button:hover {
     color: var(--link-hover);
 }
 
-/* Inline Form Message Styles (Cute with rounded corners) */
 .form-message {
     padding: 15px;
     border-radius: 10px;
-    /* *** CHANGED THIS LINE *** */
     margin-bottom: 0;
-    /* *** ADDED THIS LINE *** */
     margin-top: 20px;
     font-weight: 600;
     text-align: center;
@@ -524,7 +502,6 @@ button:hover {
     color: red;
 }
 
-/* Footer */
 footer {
     background-color: var(--footer-bg);
     color: var(--footer-text);
@@ -572,7 +549,6 @@ footer {
     color: #38165f;
 }
 
-/* Back to Top Button */
 #back-to-top {
     position: fixed;
     bottom: 20px;
@@ -596,16 +572,12 @@ footer {
     transform: translateY(-5px);
 }
 
-/* --- ADDED THIS NEW CODE (Before Media Queries) --- */
-
-/* Keyframes for Option 1: Flowing Background */
 @keyframes flowAnimation {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* Classes for Option 2: Scroll-In Animation */
 .fade-in-section {
     opacity: 0;
     transform: translateY(20px);
@@ -617,71 +589,77 @@ footer {
     transform: translateY(0);
 }
 
-/* Media Queries for Mobile */
+/* === ALL FIXES ARE IN THIS MEDIA QUERY === */
 @media (max-width: 768px) {
-    /* --- UPDATED: Removed flex-wrap --- */
     header {
-        /* This forces the [icon] [title] [icon] to stay on one row */
+        flex-wrap: wrap; /* Allows nav to drop below */
     }
-    
-    header nav {
-        order: 4; /* Puts it last */
-        width: 100%;
-    }
-    
-    /* --- NEW: Added all centering rules here --- */
+
+    /* --- 1. THIS CENTERS YOUR LOGO/TITLE --- */
     .header-content {
-        flex-grow: 1; /* Take up remaining space */
-        flex-basis: 0; /* Allow it to grow/shrink properly */
-        justify-content: center; /* Center the logo/title */
+        flex-grow: 1; /* Takes up the middle space */
+        flex-basis: 0;
+        justify-content: center; /* Centers the content */
     }
     
     .header-content .header-img {
-        width: 40px;
+        width: 40px; /* Shrink logo */
     }
     .header-content h1 {
         font-size: 1.5rem; /* Shrink title */
     }
-    
-    /* --- UPDATED --- */
-    #dark-mode-toggle {
-        margin: 0;
-        flex-shrink: 0; /* Prevent shrinking */
-    }
 
+    /* --- 2. THIS MOVES THE NAV (LINKS) OFF-SCREEN --- */
+    /* (But leaves the toggle button where it is) */
+    nav {
+        order: 3; /* Puts it last, after the toggle */
+        width: 100%;
+    }
+    
     nav ul {
-        display: none; /* Hide dropdown by default */
+        display: none; /* Hide links by default */
         flex-direction: column;
         gap: 10px;
         width: 100%;
+        /* Positions the dropdown */
         position: absolute;
-        top: 100%; /* Place it right below the header */
+        top: 100%; 
         left: 0;
         background-color: var(--primary-color);
-        /* === THIS IS THE FIX === */
-        padding: 10px 20px; /* Was 10px 0 */
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        
+        /* --- 3. THIS IS THE PADDING FIX --- */
+        padding: 10px 20px; 
     }
 
     nav ul.active {
-        display: flex; /* Show dropdown */
+        display: flex; /* Show the dropdown */
     }
 
+    /* --- 4. THIS POSITIONS THE HAMBURGER/TOGGLE --- */
     .hamburger {
-        display: block; /* Show hamburger */
-        flex-shrink: 0; /* Prevent shrinking */
+        display: block;
+        order: -1; /* Puts it on the far left */
+        flex-shrink: 0;
     }
 
+    #dark-mode-toggle {
+        margin: 0;
+        flex-shrink: 0;
+        /* It stays on the right by default */
+    }
+
+    /* --- 5. THIS FIXES THE PAGE CONTENT OVERLAP --- */
     main {
-        padding-top: 80px;
+        padding-top: 80px; /* Was 120px */
     }
 
     section {
-        padding: 40px 15px; /* Reduced for mobile */
+        padding: 40px 15px; 
     }
     
     main section:last-of-type {
-        padding-bottom: 20px; /* Also apply to mobile */
+        padding-bottom: 20px; 
     }
 
     h2 {
@@ -698,16 +676,16 @@ footer {
 
     .content-block,
     .skills-list,
-    .coursework-grid { /* UPDATED: Added coursework grid */
-        grid-template-columns: 1fr; /* Stack on mobile */
+    .coursework-grid { 
+        grid-template-columns: 1fr; 
     }
     
     .coursework-grid {
-        max-width: 100%; /* Allow full width on mobile */
+        max-width: 100%; 
     }
 
     .social-list li {
-        justify-content: center; /* Center on mobile */
+        justify-content: center; 
     }
 
     .footer-links {
@@ -724,21 +702,19 @@ footer {
 
 @media (min-width: 769px) {
     header.hidden {
-        transform: none; /* Don't hide on desktop */
+        transform: none; 
     }
 }
 
 @media (hover: none) {
-    /* Disable hover effects on touch devices */
     .card:hover,
     .social-links li:hover,
     .contact-list li:hover,
     .footer-links li:hover,
-    .course-card:hover { /* UPDATED: Added course card */
+    .course-card:hover { 
         transform: none;
     }
 
-    /* On touch devices, show description by default */
     .course-description {
         margin-top: 15px; 
         max-height: 200px; 
