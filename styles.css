@@ -369,9 +369,57 @@ button:hover {
     flex-wrap: wrap; /* Wrap on small screens */
 }
 
-.social-item span {
+/* === NEW: Styles for Clickable Cards (Resources/Social) === */
+
+/* 1. Add this to the <li> (the card) to remove padding */
+.card.clickable {
+    padding: 0;
+}
+
+/* 2. This is the new <a> tag that fills the card */
+.clickable-card-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px; /* This was the padding on the card */
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: var(--text-color);
+    border-radius: 5px; /* Match the card's border-radius */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 3. Add a subtle hover effect to the link itself */
+.clickable-card-link:hover {
+    background-color: rgba(0,0,0,0.03); /* Faint dark hover */
+    color: var(--text-color); /* Override default link hover */
+}
+body.dark-mode .clickable-card-link:hover {
+    background-color: rgba(255,255,255,0.05); /* Faint light hover */
+    color: var(--text-color);
+}
+
+/* 4. Styles for the new resource icons */
+.resource-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0; /* Prevents icon from shrinking */
+}
+
+/* 5. Styles for the text next to the icon */
+.resource-text {
+    text-align: left;
+    flex-grow: 1;
+}
+
+/* 6. This is the new class for the social media text */
+.social-text {
     font-weight: 600;
 }
+/* === END of new styles === */
+
 
 /* Password Strength Analyzer */
 #password-input {
@@ -736,6 +784,17 @@ footer {
     .social-list li {
         justify-content: center; 
     }
+
+    /* NEW: Make clickable card links stack vertically on mobile */
+    .clickable-card-link {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    .resource-text {
+        text-align: center;
+    }
+    /* END NEW */
 
     .footer-links {
         flex-direction: column;
