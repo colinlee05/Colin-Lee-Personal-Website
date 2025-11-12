@@ -201,16 +201,54 @@
                 </div>
             </div>
         </section>
+        
         <section id="resources">
             <div class="content">
                 <h2>Resources</h2>
+                <!-- 
+                  UPDATED: The <ul> now has new classes on its <li> and <a> tags.
+                  - The <li> has class "clickable" to remove its padding.
+                  - The <a> has class "clickable-card-link" to make it fill the card.
+                  - Added <img> tags with your new logo filenames.
+                -->
                 <ul class="skills-list"> 
-                    <li class="card">Cybrary - Free cybersecurity courses for Cyber Risk studies. <a href="https://www.cybrary.it/" target="_blank" rel="noopener noreferrer"><br>Visit</a></li>
-                    <li class="card">VBA Docs - Excel automation reference. <a href="https://docs.microsoft.com/en-us/office/vba/api/overview/" target="_blank" rel="noopener noreferrer"><br>Visit</a></li>
-                    <li class="card">W3Schools Java - Java learning resource. <a href="https://www.w3schools.com/java/" target="_blank" rel="noopener noreferrer"><br>Visit</a></li>
-                    <li class="card">OWASP - Open Web Application Security Project for cybersecurity best practices and vulnerability guides. <a href="https://owasp.org/" target="_blank" rel="noopener noreferrer"><br>Visit</a></li>
-                    <li class="card">Coursera/Google Cybersecurity Certificate - Affordable entry-level cert in cyber fundamentals. <a href="https://www.coursera.org/professional-certificates/google-cybersecurity" target="_blank" rel="noopener noreferrer"><br>Visit</a></li>
-                    <li class="card">LSU Center for Internal Auditing & Cybersecurity - University resources for risk management and cert prep. <a href="httpsfs://www.lsu.edu/business/accounting/cia.php" target="_blank" rel="noopener noreferrer"><br>Visit</a></li>
+                    <li class="card clickable">
+                        <a href="https://www.cybrary.it/" target="_blank" rel="noopener noreferrer" class="clickable-card-link">
+                            <img src="cybrary-logo.png" alt="Cybrary Logo" class="resource-icon">
+                            <span class="resource-text">Cybrary - Free cybersecurity courses for Cyber Risk studies.</span>
+                        </a>
+                    </li>
+                    <li class="card clickable">
+                        <a href="https://docs.microsoft.com/en-us/office/vba/api/overview/" target="_blank" rel="noopener noreferrer" class="clickable-card-link">
+                            <img src="vba-logo.png" alt="VBA Logo" class="resource-icon">
+                            <span class="resource-text">VBA Docs - Excel automation reference.</span>
+                        </a>
+                    </li>
+                    <li class="card clickable">
+                        <a href="https://www.w3schools.com/java/" target="_blank" rel="noopener noreferrer" class="clickable-card-link">
+                            <img src="w3schools-logo.png" alt="W3Schools Logo" class="resource-icon">
+                            <span class="resource-text">W3Schools Java - Java learning resource.</span>
+                        </a>
+                    </li>
+                    <li class="card clickable">
+                        <a href="https://owasp.org/" target="_blank" rel="noopener noreferrer" class="clickable-card-link">
+                            <img src="owasp-logo.png" alt="OWASP Logo" class="resource-icon">
+                            <span class="resource-text">OWASP - Open Web Application Security Project for cybersecurity best practices.</span>
+                        </a>
+                    </li>
+                    <li class="card clickable">
+                        <a href="https://www.coursera.org/professional-certificates/google-cybersecurity" target="_blank" rel="noopener noreferrer" class="clickable-card-link">
+                            <img src="google-logo.png" alt="Google Logo" class="resource-icon">
+                            <span class="resource-text">Coursera/Google Cybersecurity Certificate - Affordable entry-level cert.</span>
+                        </a>
+                    </li>
+                    <li class="card clickable">
+                        <!-- FIXED: Corrected 'httpfs://' to 'https://' -->
+                        <a href="https://www.lsu.edu/business/accounting/cia.php" target="_blank" rel="noopener noreferrer" class="clickable-card-link">
+                            <img src="lsu-cia-logo.png" alt="LSU CIA Logo" class="resource-icon">
+                            <span class="resource-text">LSU Center for Internal Auditing & Cybersecurity - University resources.</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </section>
@@ -218,14 +256,24 @@
         <section id="social">
             <div class="content">
                 <h2>Social</h2>
+                <!-- 
+                  UPDATED: Applied the same logic as the Resources section.
+                  - The <li> has "clickable".
+                  - A new <a> with "clickable-card-link" wraps the content.
+                  - The inner <a> tag was removed and the span text was simplified.
+                -->
                 <ul class="social-list skills-list"> 
-                    <li class="social-item card">
-                        <img src="x-icon.png" alt="X" class="social-icon"> 
-                        <span>X: <a href="https://twitter.com/colinlee05" target="_blank" rel="noopener noreferrer">@colinlee05</a></span>
+                    <li class="social-item card clickable">
+                        <a href="https://twitter.com/colinlee05" target="_blank" rel="noopener noreferrer" class="clickable-card-link">
+                            <img src="x-icon.png" alt="X" class="social-icon"> 
+                            <span class="social-text">X: @colinlee05</span>
+                        </a>
                     </li>
-                    <li class="social-item card">
-                        <img src="instagram-icon.png" alt="Instagram" class="social-icon">
-                        <span>Instagram: <a href="https://instagram.com/colinlee.05" target="_blank" rel="noopener noreferrer">@colinlee.05</a></span>
+                    <li class="social-item card clickable">
+                        <a href="https://instagram.com/colinlee.05" target="_blank" rel="noopener noreferrer" class="clickable-card-link">
+                            <img src="instagram-icon.png" alt="Instagram" class="social-icon">
+                            <span class="social-text">Instagram: @colinlee.05</span>
+                        </a>
                     </li>
                 </ul>
             </div>
