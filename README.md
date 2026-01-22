@@ -1,6 +1,6 @@
 # https://colinlee.me
 
-This git contains all source code for Colin Lee's website.
+This repo contains all source code for Colin Lee's website.
 
 You can find the site live at:
 colinlee.me
